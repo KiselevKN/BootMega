@@ -1,0 +1,49 @@
+﻿<theme:MainWindow x:Class="BootMega.Shell"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:prism="http://www.codeplex.com/prism"
+                  xmlns:commands="clr-namespace:BootMega.Interaction.Commands;assembly=BootMega.Interaction"
+                  xmlns:r="clr-namespace:BootMega.Properties"
+                  xmlns:theme="clr-namespace:BootMega.Theme;assembly=BootMega.Theme"
+                  Title="{x:Static r:Resources.Title}" 
+                  ResizeMode="NoResize" 
+                  Icon="pack://application:,,,/BootMega.Theme;component/Icons/flame.png" 
+                  SizeToContent="WidthAndHeight"  
+                  WindowStartupLocation="CenterScreen">
+    <theme:MainWindow.InputBindings>
+        <KeyBinding Command="{x:Static commands:GlobalCommands.OpenHexFileCommand}" Gesture="Ctrl+O" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.SaveHexFileCommand}" Gesture="Ctrl+S" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.SaveAllHexFilesCommand}" Gesture="Ctrl+Shift+S" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.CompareHexFilesCommand}" Gesture="Ctrl+C" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.CloseAppCommand}" Gesture="Alt+F4" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.SelectSettingsCommand}" Gesture="Alt+Shift+S" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.AddNewSettingsCommand}" Gesture="Alt+Shift+A" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.UpdateSettingsCommand}" Gesture="Alt+Shift+U" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.RemoveSettingsCommand}" Gesture="Alt+Shift+R" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.ConnectionCommand}" Gesture="Alt+C" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.DownloadCommand}" Gesture="Alt+D" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.UploadCommand}" Gesture="Alt+U" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.EraseCommand}" Gesture="Alt+E" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.ReadFuseCommand}" Gesture="Alt+F" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.ReadLockCommand}" Gesture="Alt+L" />
+        <KeyBinding Command="{x:Static commands:GlobalCommands.ResetCommand}" Gesture="Alt+R" />
+    </theme:MainWindow.InputBindings>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ItemsControl Grid.Row="0" Name="MenuRegion" 
+                      prism:RegionManager.RegionName="MenuRegion"/>
+        <ItemsControl Grid.Row="1" Name="ToolBarRegion" 
+                      prism:RegionManager.RegionName="ToolBarRegion"/>
+        <ItemsControl VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                      Grid.Row="2" Margin="4" 
+                      Name="HexFileManagerRegion" 
+                      prism:RegionManager.RegionName="HexFileManagerRegion"/>
+        <ItemsControl Grid.Row="3" Name="StatusBarRegion" 
+                      prism:RegionManager.RegionName="StatusBarRegion"/>
+    </Grid>
+</theme:MainWindow>

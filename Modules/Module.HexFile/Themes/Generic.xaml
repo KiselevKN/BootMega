@@ -1,0 +1,318 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:theme="clr-namespace:BootMega.Theme;assembly=BootMega.Theme"
+    xmlns:m="clr-namespace:Module.HexFile.Models"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:vm="clr-namespace:Module.HexFile.ViewModels"
+    xmlns:conv="clr-namespace:Module.HexFile.Converters">
+
+    <x:Array x:Key="numberOfBytesInRowArray" Type="{x:Type sys:Byte}">
+        <sys:Byte>0</sys:Byte>
+        <sys:Byte>1</sys:Byte>
+        <sys:Byte>2</sys:Byte>
+        <sys:Byte>3</sys:Byte>
+        <sys:Byte>4</sys:Byte>
+        <sys:Byte>5</sys:Byte>
+        <sys:Byte>6</sys:Byte>
+        <sys:Byte>7</sys:Byte>
+        <sys:Byte>8</sys:Byte>
+        <sys:Byte>9</sys:Byte>
+        <sys:Byte>10</sys:Byte>
+        <sys:Byte>11</sys:Byte>
+        <sys:Byte>12</sys:Byte>
+        <sys:Byte>13</sys:Byte>
+        <sys:Byte>14</sys:Byte>
+        <sys:Byte>15</sys:Byte>
+    </x:Array>
+
+    <conv:ActiveDocumentConverter x:Key="activeDocumentConverter"/>
+    <conv:ByteToStringConverter x:Key="byteToStringConverter"/>
+    <conv:AddressToStringConverter x:Key="addressToStringConverter"/>
+    <conv:MaxScrollConverter x:Key="maxScrollConverter"/>
+    <conv:ValueScrollConverter x:Key="valueScrollConverter"/>
+    <conv:ListOfFilesConverter x:Key="listOfFilesConverter"/>
+    
+    <Style x:Key="textBlockStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Padding" Value="4 2"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <DataTemplate x:Key="hexCell" DataType="{x:Type m:Cell}">
+        <TextBlock x:Name="cell" Style="{StaticResource textBlockStyle}"
+                 Text="{Binding Path=Value, StringFormat={}{0:X2}}" Foreground="Green"/>
+        <DataTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=InCompareMode}" Value="false"/>
+                    <Condition Binding="{Binding Path=Value}" Value="255"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="cell" Property="Foreground" Value="{StaticResource TextBox.Foreground}" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=InCompareMode}" Value="true"/>
+                    <Condition Binding="{Binding Path=NotEqual}" Value="true"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="cell" Property="Foreground" Value="Red" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=InCompareMode}" Value="true"/>
+                    <Condition Binding="{Binding Path=NotEqual}" Value="false"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="cell" Property="Foreground" Value="{StaticResource TextBox.Foreground}" />
+            </MultiDataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <DataTemplate x:Key="stringCell" DataType="{x:Type m:Cell}">
+        <TextBlock x:Name="cell" Style="{StaticResource textBlockStyle}" Padding="2"
+                   Text="{Binding Path=Value, Converter={StaticResource byteToStringConverter}}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="hexPage" DataType="{x:Type m:MemoryPage}">
+        <ItemsControl Focusable="False" ItemsSource="{Binding Path=Cells}" ItemTemplate="{StaticResource hexCell}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="16" Columns="16"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="stringPage" DataType="{x:Type m:MemoryPage}">
+        <ItemsControl Focusable="False" ItemsSource="{Binding Path=Cells}" ItemTemplate="{StaticResource stringCell}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="16" Columns="16"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="addressSelector" DataType="{x:Type m:Address}">
+        <theme:AddressTextBox AsHex="True" HorizontalAlignment="Stretch"
+                              Value="{Binding Path=Value}"
+                              Minimum="{Binding Path=Minimum}"
+                              Maximum="{Binding Path=Maximum}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="address" DataType="{x:Type m:Address}">
+        <TextBlock Style="{StaticResource textBlockStyle}" Padding="8 2 7 2">
+            <TextBlock.Text>
+                <MultiBinding Converter="{StaticResource addressToStringConverter}">
+                    <Binding Path="Value"/>
+                    <Binding Path="Maximum"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="addresses" DataType="{x:Type m:Addresses}">
+        <ItemsControl Focusable="False" ItemsSource="{Binding Path=Values}" 
+                      ItemTemplate="{StaticResource address}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="16" Columns="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="numberOfBytesInRow">
+        <ItemsControl Focusable="False" ItemsSource="{Binding}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="16"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                <TextBlock x:Name="cell" Style="{StaticResource textBlockStyle}" Text="{Binding StringFormat={}{0:X2}}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type  vm:MemoryViewModel}">
+        <Border BorderThickness="1" BorderBrush="#FFCCCCCC" Padding="1" 
+                            Background="White" HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ContentPresenter Content="{Binding Path=Address}" HorizontalAlignment="Stretch"
+                                  ContentTemplate="{StaticResource addressSelector}"/>
+                <Border Grid.Column="1" Grid.Row="0" 
+                        BorderThickness="0 1 1 1" BorderBrush="#FFCCCCCC"  
+                        Padding="16 0" Background="#FFE8E8E8">
+                    <ContentPresenter Content="{StaticResource numberOfBytesInRowArray}"
+                                      ContentTemplate="{StaticResource numberOfBytesInRow}"/>
+                </Border>
+                <Border Grid.Column="2" Grid.Row="0" 
+                        BorderThickness="0 1 0 1" BorderBrush="#FFCCCCCC" 
+                        Background="#FFE8E8E8"/>
+                <Border Grid.Column="3" Grid.Row="0" 
+                        BorderThickness="0 1 1 1" BorderBrush="#FFCCCCCC" 
+                        Background="#FFE8E8E8"/>
+                <Border Grid.Column="0" Grid.Row="1" Padding=" 4 8 4 12" Background="#FFE8E8E8" 
+                                    BorderThickness="1 0 1 1" BorderBrush="#FFCCCCCC">
+                    <ContentPresenter Content="{Binding Path=Addresses}"
+                                      ContentTemplate="{StaticResource addresses}"/>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="1" 
+                        BorderThickness="0 0 1 1" Padding="16 8 16 12" 
+                        BorderBrush="#FFCCCCCC">
+                    <ContentPresenter Content="{Binding Path=Page}"
+                                      ContentTemplate="{StaticResource hexPage}"/>
+                </Border>
+                <Border Grid.Column="2" Grid.Row="1" 
+                        BorderThickness="0 0 0 1" Padding="16 8 16 12"
+                        BorderBrush="#FFCCCCCC">
+                    <ContentPresenter Content="{Binding Path=Page}"
+                                      ContentTemplate="{StaticResource stringPage}"/>
+                </Border>
+                <Border Grid.Column="3" Grid.Row="1" BorderThickness="0 0 1 1" BorderBrush="#FFCCCCCC">
+                    <ScrollBar x:Name="PART_ScrollBar" Orientation="Vertical" 
+                               Minimum="0"
+                               Maximum="{Binding Path=Address.Maximum, Converter={StaticResource maxScrollConverter}}" 
+                               Value="{Binding Path=Address.Value, Converter={StaticResource valueScrollConverter}}"
+                               ViewportSize="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                               LargeChange="16" SmallChange="1"/>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Padding="3"
+                    BorderBrush="#FFA0A0A0" BorderThickness="0 0 0 0"
+                    Background="#FFE8E8E8" TextBlock.Foreground="#FF1A1A1A">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Padding="8 0" Text="{Binding Path=Size, StringFormat=Размер памяти (КБ): {0}}" FontWeight="SemiBold"/>
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                            <TextBlock HorizontalAlignment="Right" Padding="16 0 4 0" Text="{Binding Path=FillingFactor, StringFormat=Коэффициент заполнения (байт): {0}}" FontWeight="SemiBold"/>
+                            <TextBlock HorizontalAlignment="Right" Padding="16 0 4 0" 
+                                       Text="{Binding Path=FillingFactorPercents, StringFormat={}{0:F2} %}"
+                                       ToolTip="Процент заполнения"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:CompareFilesViewModel}">
+        <StackPanel Orientation="Vertical">
+            <Grid Margin="15 15 15 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding Path=Files, Converter={StaticResource listOfFilesConverter}}"
+                            SelectedIndex="{Binding Path=IndexOfTheSelectedLeftFile}"/>
+                <ComboBox Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding Path=Files, Converter={StaticResource listOfFilesConverter}}"
+                            SelectedIndex="{Binding Path=IndexOfTheSelectedRightFile}"/>
+
+                <ContentPresenter Grid.Column="0" Grid.Row="1" Content="{Binding Path=Address}" HorizontalAlignment="Stretch"
+                                      ContentTemplate="{StaticResource addressSelector}"/>
+                <Border Grid.Column="1" Grid.Row="1" 
+                            BorderThickness="0 1 1 1" BorderBrush="#FFCCCCCC"  
+                            Padding="16 0" Background="#FFE8E8E8">
+                    <ContentPresenter Content="{StaticResource numberOfBytesInRowArray}"
+                                      ContentTemplate="{StaticResource numberOfBytesInRow}"/>
+                </Border>
+                <Border Grid.Column="2" Grid.Row="1" 
+                            BorderThickness="0 1 1 1" BorderBrush="#FFCCCCCC"  
+                            Padding="16 0" Background="#FFE8E8E8">
+                    <ContentPresenter Content="{StaticResource numberOfBytesInRowArray}"
+                                      ContentTemplate="{StaticResource numberOfBytesInRow}"/>
+                </Border>
+
+                <Border Grid.Column="3" Grid.Row="1" 
+                            BorderThickness="0 1 1 1" BorderBrush="#FFCCCCCC" 
+                            Background="#FFE8E8E8"/>
+                <Border Grid.Column="0" Grid.Row="2" Padding=" 4 8 4 12" Background="#FFE8E8E8" 
+                                        BorderThickness="1 0 1 1" BorderBrush="#FFCCCCCC">
+                    <ContentPresenter Content="{Binding Path=Addresses}" HorizontalAlignment="Center"
+                                          ContentTemplate="{StaticResource addresses}"/>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="2" 
+                            BorderThickness="0 0 1 1" Padding="16 8 16 12" 
+                            BorderBrush="#FFCCCCCC">
+                    <ContentPresenter Content="{Binding Path=LeftPage}"
+                                          ContentTemplate="{StaticResource hexPage}"/>
+                </Border>
+                <Border Grid.Column="2" Grid.Row="2" 
+                            BorderThickness="0 0 1 1" Padding="16 8 16 12" 
+                            BorderBrush="#FFCCCCCC">
+                    <ContentPresenter Content="{Binding Path=RightPage}"
+                                          ContentTemplate="{StaticResource hexPage}"/>
+                </Border>
+                <Border Grid.Column="3" Grid.Row="2" BorderThickness="0 0 1 1" BorderBrush="#FFCCCCCC">
+                    <ScrollBar x:Name="PART_ScrollBar" Orientation="Vertical" 
+                                   Minimum="0"
+                                   Maximum="{Binding Path=Address.Maximum, Converter={StaticResource maxScrollConverter}}" 
+                                   Value="{Binding Path=Address.Value, Converter={StaticResource valueScrollConverter}}"
+                                   ViewportSize="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+                                   LargeChange="16" SmallChange="1"/>
+                </Border>
+                
+                <StackPanel Grid.ColumnSpan="4" Grid.Row="3" Margin="0 10 0 0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ComboBox HorizontalAlignment="Stretch" FontFamily="Consolas" Margin="0 0 5 0" MaxDropDownHeight="100"
+                            ItemsSource="{Binding Path=AddressesOfDiffPages}"
+                          SelectedIndex="{Binding Path=IndexOfTheSelectedAddress}"/>
+                    <Button Content="Закрыть" Command="{Binding CloseCommand}"/>
+                </StackPanel>
+            </Grid>
+            <Border Grid.ColumnSpan="4" Grid.Row="3" x:Name="status" BorderThickness="0" BorderBrush="#FFCCCCCC" Padding="10 4" Background="#FF266E26" TextBlock.Foreground="White">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Status}"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Differences}"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=FilesAreEqual}" Value="false">
+                <Setter TargetName="status" Property="Background" Value="#FFDC2020"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+    
+</ResourceDictionary>

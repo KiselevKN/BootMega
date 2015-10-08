@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<settings xmlns="http://tempuri.org/SettingsSchema.xsd">
+
+  <selectedSettings recordRef="0">
+    <memoryType>0</memoryType>
+  </selectedSettings>
+  
+  <processors>
+    
+    <processor ID ="0" Name="ATMega2560">
+      <eepromSize>0x1000</eepromSize>
+      <flashSize>0x40000</flashSize>
+      <bootStartAddress>0x3E000</bootStartAddress>
+      <bootEndAddress>0x3FFFF</bootEndAddress>
+    </processor>
+
+    <processor ID ="1" Name="ATMega128">
+      <eepromSize>0x1000</eepromSize>
+      <flashSize>0x20000</flashSize>
+      <bootStartAddress>0x1E000</bootStartAddress>
+      <bootEndAddress>0x1FFFF</bootEndAddress>
+    </processor>
+
+    <processor ID ="2" Name="ATMega90CAN128">
+      <eepromSize>0x1000</eepromSize>
+      <flashSize>0x20000</flashSize>
+      <bootStartAddress>0x1E000</bootStartAddress>
+      <bootEndAddress>0x1FFFF</bootEndAddress>
+    </processor>
+    
+  </processors>
+
+  <usersRecords>
+    
+    <record ID ="0" processorRef="0">
+      <name>Name 1</name>
+      <serialPortSettings>
+        <baudrate>57600</baudrate>
+        <parity>1</parity>
+        <stopbit>1</stopbit>
+        <headerTx>0xAA</headerTx>
+        <headerRx>0xA5</headerRx>        
+      </serialPortSettings>
+    </record>
+
+    <record ID ="1" processorRef="2">
+      <name>Name 2</name>
+      <serialPortSettings>
+        <baudrate>57600</baudrate>
+        <parity>1</parity>
+        <stopbit>1</stopbit>
+        <headerTx>0xCA</headerTx>
+        <headerRx>0xC5</headerRx>        
+      </serialPortSettings>  
+    </record>
+
+    <record ID ="2" processorRef="0">
+      <name>Name 3</name>
+      <serialPortSettings>
+        <baudrate>57600</baudrate>
+        <parity>2</parity>
+        <stopbit>1</stopbit>
+        <headerTx>0xAA</headerTx>
+        <headerRx>0xA5</headerRx>
+      </serialPortSettings>
+      
+    </record>
+
+    <record ID ="3" processorRef="0">
+      <name>Name 4</name>
+      <serialPortSettings>
+        <baudrate>115200</baudrate>
+        <parity>1</parity>
+        <stopbit>1</stopbit>
+        <headerTx>0xAA</headerTx>
+        <headerRx>0xA5</headerRx>
+      </serialPortSettings>     
+    </record>
+    
+  </usersRecords>
+  
+</settings>

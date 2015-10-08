@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:BootMega.Theme;assembly=BootMega.Theme"
+                    xmlns:vm="clr-namespace:Module.StatusBar.ViewModels"
+                    xmlns:r="clr-namespace:Module.StatusBar.Properties">
+
+    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    
+    <DataTemplate DataType="{x:Type vm:StatusBarViewModel}">
+        <StatusBar x:Name="statusBar">
+            <StatusBarItem Visibility="{Binding HasError,  Converter={StaticResource booleanToVisibilityConverter}}">
+                <TextBlock Foreground="White" Padding="4 0 4 0" Text="{x:Static r:Resources.Error}"/>
+            </StatusBarItem>
+            <StatusBarItem Visibility="{Binding NotHasError, Converter={StaticResource booleanToVisibilityConverter}}">
+                <TextBlock Grid.Column="0" Foreground="White" Padding="4 0 4 0">
+                        <Run Text="{x:Static r:Resources.Settings}"/>
+                        <Run Text=": "/>
+                        <Run Text="{Binding SettingsName}"/>
+                </TextBlock>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right" 
+                                           Visibility="{Binding NotHasError, Converter={StaticResource booleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  HorizontalAlignment="Right" Foreground="White" >
+                        <Run Text="{x:Static r:Resources.Processor}"/>
+                        <Run Text=": "/>
+                        <Run Text="{Binding Processor}"/>
+                    </TextBlock>
+                    <TextBlock Foreground="White" Padding="16 0">
+                        <Run Text="{x:Static r:Resources.MemoryType}"/>
+                        <Run Text=": "/>
+                        <Run Text="{Binding MemoryType}"/>
+                    </TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=HasError}" Value="true">
+                <Setter TargetName="statusBar" Property="Background" Value="Red"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+</ResourceDictionary>

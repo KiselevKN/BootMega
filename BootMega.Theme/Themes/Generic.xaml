@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:BootMega.Theme">
+    <ResourceDictionary.MergedDictionaries>
+        
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/TextBlockStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/TextBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/ScrollBarStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/ButtonStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/ComboBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/GroupBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/ListBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/RadioButtonStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/CheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/MenuStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/ToolBarStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/ProgressBarStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/TooltipStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/Icons.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/WindowsStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+

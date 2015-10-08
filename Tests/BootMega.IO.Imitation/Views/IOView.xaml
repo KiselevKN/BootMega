@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="BootMega.IO.Imitation.Views.IOView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+    <StackPanel TextBlock.FontSize="16" Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+        <TextBlock Text="{Binding Text}" Margin="2" VerticalAlignment="Center" Width="200"/>
+        <Button Margin="2" Content="Start" Foreground="Green" Background="White" Command="{Binding StartCommand}"/>
+        <Button Margin="2" Content="Stop" Foreground="Red" Background="White" Command="{Binding StopCommand}" />
+    </StackPanel>
+</UserControl>

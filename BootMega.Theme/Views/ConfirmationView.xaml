@@ -1,0 +1,21 @@
+﻿<theme:DialogWindow x:Class="BootMega.Theme.Views.ConfirmationView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:theme="clr-namespace:BootMega.Theme"
+                    ShowCloseButton="False"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    Title="{Binding Title}" SizeToContent="WidthAndHeight">
+    <theme:DialogWindow.Resources>
+        <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/Generic.xaml"/>
+    </theme:DialogWindow.Resources>
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Text}" Margin="0 10"/>
+        <StackPanel Grid.Row="1" Margin="0 5 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="{Binding Ok}"  Command="{Binding OkCommand}" HorizontalAlignment="Center"/>
+            <Button Content="{Binding Cancel}" Command="{Binding CancelCommand}" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</theme:DialogWindow>

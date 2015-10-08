@@ -1,0 +1,20 @@
+﻿<Window x:Class="BootMega.IO.Imitation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:BootMega.IO.Imitation.Views"
+        Title="Imitation" SizeToContent="WidthAndHeight">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+        <v:IOView x:Name="connection"/>
+        <v:IOView x:Name="reset"/>
+        <v:IOView x:Name="readLock"/>
+        <v:IOView x:Name="readFuse"/>
+        <v:IOView x:Name="eraseFlash"/>
+        <v:IOView x:Name="eraseEeprom"/>
+        <v:IOView x:Name="isEmptyFlash"/>
+        <v:IOView x:Name="readFlash"/>
+        <v:IOView x:Name="isEmptyEeprom"/>
+        <v:IOView x:Name="readEeprom"/>
+        <v:IOView x:Name="writeFlash"/>
+        <v:IOView x:Name="writeEeprom"/>
+    </StackPanel>
+</Window>

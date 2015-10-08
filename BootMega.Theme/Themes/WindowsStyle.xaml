@@ -1,0 +1,382 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:BootMega.Theme"
+    xmlns:core="clr-namespace:BootMega.Theme.Core"
+    xmlns:commands="clr-namespace:BootMega.Interaction.Commands;assembly=BootMega.Interaction"
+    xmlns:converters="clr-namespace:BootMega.Theme.Converters">
+
+    <converters:ThicknessToDoubleValueConverter x:Key="Key.ThicknessToDoubleValueConverter"/>
+    <BooleanToVisibilityConverter x:Key="Key.BooleanToVisibilityConverter"/>
+
+    <Style TargetType="{x:Type core:WindowChrome}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type core:WindowChrome}">
+                    <Grid x:Name="PART_Chrome" Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{TemplateBinding ResizeBorderThickness, 
+                                Converter={StaticResource Key.ThicknessToDoubleValueConverter}, ConverterParameter='Left'}"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="{TemplateBinding ResizeBorderThickness, 
+                                Converter={StaticResource Key.ThicknessToDoubleValueConverter}, ConverterParameter='Right'}"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{TemplateBinding ResizeBorderThickness, 
+                                Converter={StaticResource Key.ThicknessToDoubleValueConverter}, ConverterParameter='Top'}"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="{TemplateBinding ResizeBorderThickness, 
+                                Converter={StaticResource Key.ThicknessToDoubleValueConverter}, ConverterParameter='Bottom'}"/>
+                        </Grid.RowDefinitions>
+                        <Border x:Name="PART_BorderLeft" Cursor="SizeWE" Background="Transparent" 
+                                Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"/>
+                        <Border x:Name="PART_BorderTopLeft" Cursor="SizeNWSE" Background="Transparent" 
+                                Grid.Column="0" Grid.Row="0"/>
+                        <Border x:Name="PART_BorderTop" Cursor="SizeNS" Background="Transparent" 
+                                Grid.Column="1" Grid.Row="0"/>
+                        <Border x:Name="PART_BorderTopRight" Cursor="SizeNESW" Background="Transparent" 
+                                Grid.Column="2" Grid.Row="0"/>
+                        <Border x:Name="PART_BorderRight" Cursor="SizeWE" Background="Transparent" 
+                                Grid.Column="2" Grid.Row="1" Grid.RowSpan="2"/>
+                        <Border x:Name="PART_BorderBottomRight" Cursor="SizeNWSE" Background="Transparent" 
+                                Grid.Column="2" Grid.Row="3"/>
+                        <Border x:Name="PART_BorderBottom" Cursor="SizeNS" Background="Transparent" 
+                                Grid.Column="1" Grid.Row="3"/>
+                        <Border x:Name="PART_BorderBottomLeft" Cursor="SizeNESW" Background="Transparent" 
+                                Grid.Column="0" Grid.Row="3"/>
+                        <Border x:Name="PART_Caption" Grid.Column="1" Grid.Row="1" 
+                                Width="Auto" Height="{TemplateBinding CaptionHeight}" Background="Transparent"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="PART_BorderLeft" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTopLeft" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTop" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTopRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottomRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottom" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottomLeft" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanMinimize">
+                            <Setter TargetName="PART_BorderLeft" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTopLeft" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTop" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTopRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottomRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottom" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottomLeft" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="PART_BorderLeft" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTopLeft" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTop" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderTopRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottomRight" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottom" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_BorderBottomLeft" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="TitleBar.BackgroundBrush" Color="#FF293956"/>
+    <SolidColorBrush x:Key="TitleBar.Foreground" Color="White"/>
+    <SolidColorBrush x:Key="TitleBar.MouseOver.Background" Color="White"/>
+    <SolidColorBrush x:Key="TitleBar.CloseButton.Background" Color="#FFC75050"/>
+    <SolidColorBrush x:Key="WindowBackground" Color="#FFE8E8EC" />
+    <SolidColorBrush x:Key="WindowBorderBrush" Color="Gray" />
+    <SolidColorBrush x:Key="WindowBorderBrushInactive" Color="#999999" />
+    <SolidColorBrush x:Key="WindowStatusForeground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="WindowStatusBackground" Color="#FF007ACC" />
+    <SolidColorBrush x:Key="WindowStatusForegroundInactive" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TitleBar.BackgroundInactive" Color="#FFACACAC"/>
+    <SolidColorBrush x:Key="OkButton.Background" Color="White"/>
+    <SolidColorBrush x:Key="CancelButton.Background" Color="White"/>
+
+    <Style x:Key="WindowStyleTitleBarButton" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Foreground" Value="{StaticResource TitleBar.Foreground}"/>
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border x:Name="PART_border" Background="{TemplateBinding Background}"/>
+                        <ContentPresenter/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_border" Property="Background" 
+                                    Value="{StaticResource TitleBar.MouseOver.Background}"/>
+                            <Setter TargetName="PART_border" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WindowStyleTitleBarButton.Close" TargetType="{x:Type Button}" 
+           BasedOn="{StaticResource WindowStyleTitleBarButton}">
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Background" Value="{StaticResource TitleBar.CloseButton.Background}"/>
+    </Style>
+
+    <Style TargetType="{x:Type local:DialogWindow}">
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="Background" Value="{StaticResource WindowBackground}" />
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+        <Setter Property="FontFamily" Value="Cambria"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="WindowChrome.WindowChrome"  Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate x:Name="PART_WindowTemplate" TargetType="{x:Type local:DialogWindow}">
+                    <Border x:Name="PART_Container" Padding="5">
+                        <Border x:Name="PART_Border" Width="Auto" Height="Auto" Padding="0"
+                                Background="{StaticResource WindowBackground}" BorderBrush="{StaticResource WindowBorderBrush}" 
+                                BorderThickness="1">
+                            <Grid HorizontalAlignment="Stretch" Background="Transparent" VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="28"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border x:Name="PART_TitleBar" Grid.Row="0"
+                                        Height="28"
+                                        Background="{StaticResource TitleBar.BackgroundBrush}" BorderThickness="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image x:Name="PART_Icon" 
+                                               SnapsToDevicePixels="True" 
+                                               Grid.Column="0" 
+                                               Panel.ZIndex="10"
+                                               HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                               Width="16" Height="16" Margin="12 0 0 0"
+                                               Source="{Binding Path=Icon, Mode=OneWay, 
+                                                    RelativeSource={RelativeSource TemplatedParent}}"/>
+
+                                        <TextBlock x:Name="PART_Caption" Grid.Column="1" Margin="10 0 10 0"  
+                                                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                   Foreground="{StaticResource TitleBar.Foreground}" 
+                                                   FontFamily="Segoe UI" FontSize="14" FontWeight="SemiBold"
+                                                   Text="{Binding Path=Title, Mode=OneWay, 
+                                                        RelativeSource={RelativeSource TemplatedParent}}"/>
+                                        
+                                        <Button x:Name="PART_CloseButton"  Grid.Column="2" Panel.ZIndex="10" 
+                                                Visibility="{TemplateBinding ShowCloseButton, Converter={StaticResource Key.BooleanToVisibilityConverter}}"
+                                                Style="{StaticResource WindowStyleTitleBarButton.Close}">
+                                            <Grid MaxHeight="9" MaxWidth="9" HorizontalAlignment="Center" Width="40">
+                                                <Path Stroke="White" StrokeThickness="1.5" Stretch="None" 
+                                                      Data="M0,0 L8,8 M0,8 L8,0"/>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                                <Border Grid.Row="1" Panel.ZIndex="10"  Background="{TemplateBinding Background}">
+                                    <ContentPresenter/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_Icon" Property="Source" Value="{x:Null}">
+                            <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="PART_Border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="black" Opacity="0.5" BlurRadius="7" ShadowDepth="2" Direction="315"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter TargetName="PART_Border" Property="BorderBrush" 
+                                    Value="{StaticResource WindowBorderBrushInactive}"/>
+                            <Setter TargetName="PART_TitleBar" Property="Background" 
+                                    Value="{StaticResource TitleBar.BackgroundInactive}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+   
+    <Style TargetType="{x:Type local:MainWindow}">
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="Background" Value="{StaticResource WindowBackground}" />
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        <Setter Property="SizeToContent" Value="Manual"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+        <Setter Property="FontFamily" Value="Cambria"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="MinWidth" Value="300"/>
+        <Setter Property="MinHeight" Value="200"/>
+        <Setter Property="WindowChrome.WindowChrome"  Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate x:Name="PART_WindowTemplate" 
+                                 TargetType="{x:Type local:MainWindow}">
+                    <Border x:Name="PART_Container" Padding="5" >
+                        <Border x:Name="PART_Border" 
+                                Width="Auto" Height="Auto" 
+                                Padding="0"
+                                Background="{StaticResource WindowBackground}" 
+                                BorderBrush="{StaticResource WindowBorderBrush}" 
+                                BorderThickness="1">
+                            <Grid HorizontalAlignment="Stretch" 
+                                  Background="Transparent" 
+                                  VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="PART_TitleBar" 
+                                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" 
+                                        Height="36"
+                                        Background="{StaticResource TitleBar.BackgroundBrush}" 
+                                        BorderThickness="0"/>
+                                <Image x:Name="PART_Icon" 
+                                       SnapsToDevicePixels="True" 
+                                       Grid.Row="0" Grid.Column="0" 
+                                       Panel.ZIndex="10"
+                                       HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                       Width="24" Height="24" 
+                                       Margin="12 0 0 0"
+                                       Source="{Binding Path=Icon, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+
+                                <TextBlock x:Name="PART_Caption" Grid.Row="0" Grid.Column="1" Margin="10 0 0 0"  HorizontalAlignment="Left" VerticalAlignment="Center"
+                                           Foreground="{StaticResource TitleBar.Foreground}" FontFamily="Segoe UI" FontSize="15" FontWeight="SemiBold"
+                                           Text="{Binding Path=Title, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+
+                                <Button x:Name="PART_MinButton" Grid.Row="0" Grid.Column="2" Panel.ZIndex="10" Style="{StaticResource WindowStyleTitleBarButton}">
+                                    <Grid MaxHeight="9" MaxWidth="9">
+                                        <Path Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                                              StrokeThickness="1" Stretch="None" RenderOptions.EdgeMode="Aliased"
+                                              Data="M0,8 H8 M0,7 H8 M0,6 H8"/>
+                                    </Grid>
+                                </Button>
+                                <Button x:Name="PART_MaxButton" Grid.Row="0" Grid.Column="3" Panel.ZIndex="10" Style="{StaticResource WindowStyleTitleBarButton}">
+                                    <Grid MaxHeight="9" MaxWidth="9">
+                                        <Path x:Name="PART_MaxButton_Path"
+                                              Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                                              StrokeThickness="1" Stretch="None" RenderOptions.EdgeMode="Aliased"
+                                              Data="M0,0 H8 V8 H0 V0 M0,1 H8 M0,2 H8"/>
+                                    </Grid>
+                                </Button>
+                                <Button x:Name="PART_CloseButton" Grid.Row="0" Grid.Column="4" Panel.ZIndex="10" 
+                                        Command="{x:Static commands:GlobalCommands.CloseAppCommand}"
+                                        Style="{StaticResource WindowStyleTitleBarButton.Close}">
+                                    <Grid MaxHeight="9" MaxWidth="9" HorizontalAlignment="Center" Width="40">
+                                        <Path Stroke="White" StrokeThickness="1.5" Stretch="None" Data="M0,0 L8,8 M0,8 L8,0"/>
+                                    </Grid>
+                                </Button>
+                                <core:WindowChrome Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" Panel.ZIndex="9" 
+                                                      CaptionHeight="36"
+                                                      ResizeBorderThickness="5"
+                                                      WindowState="{TemplateBinding WindowState}" ResizeMode="{TemplateBinding CopyResizeMode}"/>
+                                <Border x:Name="Content" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Panel.ZIndex="10"  Background="{TemplateBinding Background}">
+                                    <ContentPresenter/>
+                                </Border>
+                                <ResizeGrip x:Name="PART_ResizeGrip" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Panel.ZIndex="11" 
+                                            Visibility="Collapsed" Opacity="0.7" Cursor="SizeNWSE"
+                                            Height="10" Width="10" Margin="4" VerticalAlignment="Bottom" HorizontalAlignment="Right"  />
+                            </Grid>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+
+                        <Trigger SourceName="PART_Icon" Property="Source" Value="{x:Null}">
+                            <Setter TargetName="PART_Icon" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="PART_Border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="black" Opacity="0.5" BlurRadius="7" ShadowDepth="2" Direction="315"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="PART_MinButton" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="PART_MaxButton" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanMinimize">
+                            <Setter TargetName="PART_MaxButton" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="CopyResizeMode" Value="CanResizeWithGrip">
+                            <Setter TargetName="PART_ResizeGrip" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter TargetName="Content" Property="Opacity" Value="0.75"/>
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{StaticResource WindowBorderBrushInactive}"/>
+                            <Setter TargetName="PART_TitleBar" Property="Background" Value="{StaticResource TitleBar.BackgroundInactive}"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="PART_MaxButton_Path" Property="Data" Value="M0,3 H5 V8 H0 V3 M0,4 H5 M3,0 H8 V5 H7 M3,1 H8"/>
+                            <Setter TargetName="PART_Container" Property="Padding" Value="0"/>
+                            <Setter TargetName="PART_ResizeGrip" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="{x:Type StatusBar}">
+                <Setter Property="Padding" Value="4 2"/>
+                <Setter Property="Foreground" Value="{StaticResource WindowStatusForeground}" />
+                <Setter Property="Background" Value="{StaticResource WindowStatusBackground}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsActive, RelativeSource={RelativeSource AncestorType=Window}}" Value="False">
+                        <Setter Property="Foreground" Value="{StaticResource WindowStatusForegroundInactive}" />
+                        <Setter Property="Background" Value="{StaticResource WindowBorderBrushInactive}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type ResizeGrip}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ResizeGrip}">
+                            <Border Background="{TemplateBinding Background}" SnapsToDevicePixels="True" Width="10" Height="10">
+                                <Path Data="M7.677,7.5300003 L9.677,7.5300003 9.677,9.5300002 7.677,9.5300002 z M3.786,7.5300003 L5.7859998,7.5300003 5.7859998,9.5300002 3.786,9.5300002 z M0,7.5300003 L2,7.5300003 2,9.5300002 0,9.5300002 z M3.786,3.8280003 L5.7859998,3.8280003 5.7859998,5.8280003 3.786,5.8280003 z M7.677,3.7660003 L9.677,3.7660003 9.677,5.7659999 7.677,5.7659999 z M7.677,0 L9.677,0 9.677,2 7.677,2 z" Fill="{TemplateBinding Foreground}" Height="9.53" Stretch="Fill" VerticalAlignment="Bottom" Width="9.677"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+    </Style>
+    
+</ResourceDictionary>

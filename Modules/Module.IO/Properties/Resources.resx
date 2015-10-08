@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="ConnectionCompleted" xml:space="preserve">
+    <value>Соединение успешно завершено.</value>
+  </data>
+  <data name="ConnectionError" xml:space="preserve">
+    <value>Соединение завершено с ошибкой {0}</value>
+  </data>
+  <data name="ConnectionStarted" xml:space="preserve">
+    <value>Соединение запущено</value>
+  </data>
+  <data name="ConnectionStoped" xml:space="preserve">
+    <value>Соединение остановлено</value>
+  </data>
+  <data name="EraseCompleted" xml:space="preserve">
+    <value>Стирание {0} успешно завершено</value>
+  </data>
+  <data name="EraseError" xml:space="preserve">
+    <value>Стирание {0} завершено с ошибкой {1}</value>
+  </data>
+  <data name="EraseStarted" xml:space="preserve">
+    <value>Стирание {0} запущено</value>
+  </data>
+  <data name="EraseStoped" xml:space="preserve">
+    <value>Стирание {0} остановлено</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка!</value>
+  </data>
+  <data name="InitializingIOModule" xml:space="preserve">
+    <value>Инициализация IOModule..</value>
+  </data>
+  <data name="IsEmptyCompleted" xml:space="preserve">
+    <value>Анализ {0} успешно завершен</value>
+  </data>
+  <data name="IsEmptyError" xml:space="preserve">
+    <value>Анализ {0} завершен с ошибкой {1}</value>
+  </data>
+  <data name="IsEmptyStarted" xml:space="preserve">
+    <value>Анализ {0} запущен</value>
+  </data>
+  <data name="IsEmptyStoped" xml:space="preserve">
+    <value>Анализ {0} остановлен</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="NotificationConnection" xml:space="preserve">
+    <value>Файл загрузчика: версия {0} от {1}</value>
+  </data>
+  <data name="NotificationErase" xml:space="preserve">
+    <value>Стирание успешно завершено</value>
+  </data>
+  <data name="NotificationFuse" xml:space="preserve">
+    <value>Extended: 0x{0:X2} Hight: 0x{1:X2} Low: 0x{2:X2}</value>
+  </data>
+  <data name="NotificationLock" xml:space="preserve">
+    <value>Lock: 0x{0:X2}</value>
+  </data>
+  <data name="NotificationRead" xml:space="preserve">
+    <value>Чтение успешно завершено</value>
+  </data>
+  <data name="NotificationReset" xml:space="preserve">
+    <value>Сброс успешно завершен</value>
+  </data>
+  <data name="NotificationWrite" xml:space="preserve">
+    <value>Запись успешно завершена</value>
+  </data>
+  <data name="ReadCompleted" xml:space="preserve">
+    <value>Чтение {0} успешно завершено</value>
+  </data>
+  <data name="ReadError" xml:space="preserve">
+    <value>Чтение {0} завершено с ошибкой {1}</value>
+  </data>
+  <data name="ReadFuseCompleted" xml:space="preserve">
+    <value>Чтение FUSE-бит успешно завершено. Полученные значения: Extended=0x{0:X2}, Hight=0x{1:X2}, Low=0x{2:X2}</value>
+  </data>
+  <data name="ReadFuseError" xml:space="preserve">
+    <value>Чтение FUSE-бит завершено с ошибкой {0}</value>
+  </data>
+  <data name="ReadFuseStarted" xml:space="preserve">
+    <value>Чтение FUSE-бит запущено</value>
+  </data>
+  <data name="ReadFuseStoped" xml:space="preserve">
+    <value>Чтение FUSE-бит остановлено</value>
+  </data>
+  <data name="ReadLockCompleted" xml:space="preserve">
+    <value>Чтение LOCK-бит успешно завершено. Полученные значения: 0x{0:X2}</value>
+  </data>
+  <data name="ReadLockError" xml:space="preserve">
+    <value>Чтение LOCK-бит завершено с ошибкой {0}</value>
+  </data>
+  <data name="ReadLockStarted" xml:space="preserve">
+    <value>Чтение LOCK-бит запущено</value>
+  </data>
+  <data name="ReadLockStoped" xml:space="preserve">
+    <value>Чтение LOCK-бит остановлено</value>
+  </data>
+  <data name="ReadStarted" xml:space="preserve">
+    <value>Чтение {0} запущено</value>
+  </data>
+  <data name="ReadStoped" xml:space="preserve">
+    <value>Чтение {0} остановлено</value>
+  </data>
+  <data name="ResetCompleted" xml:space="preserve">
+    <value>Сброс успешно завершен</value>
+  </data>
+  <data name="ResetError" xml:space="preserve">
+    <value>Сброс завершен с ошибкой {0}</value>
+  </data>
+  <data name="ResetStarted" xml:space="preserve">
+    <value>Сброс запущен</value>
+  </data>
+  <data name="ResetStoped" xml:space="preserve">
+    <value>Сброс остановлен</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="SelectionFileTitle" xml:space="preserve">
+    <value>Выбор файла</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Остановить</value>
+  </data>
+  <data name="TextAnalysis" xml:space="preserve">
+    <value>Анализ {0}...</value>
+  </data>
+  <data name="TextConnection" xml:space="preserve">
+    <value>Соединение...</value>
+  </data>
+  <data name="TextErase" xml:space="preserve">
+    <value>Стирание {0}...</value>
+  </data>
+  <data name="TextRead" xml:space="preserve">
+    <value>Чтение {0}...</value>
+  </data>
+  <data name="TextReadFuse" xml:space="preserve">
+    <value>Чтение FUSE-бит...</value>
+  </data>
+  <data name="TextReadLock" xml:space="preserve">
+    <value>Чтение LOCK-бит...</value>
+  </data>
+  <data name="TextReset" xml:space="preserve">
+    <value>Сброс...</value>
+  </data>
+  <data name="TextWrite" xml:space="preserve">
+    <value>Запись {0}...</value>
+  </data>
+  <data name="TitleConnection" xml:space="preserve">
+    <value>Соединение</value>
+  </data>
+  <data name="TitleErase" xml:space="preserve">
+    <value>Стирание {0}</value>
+  </data>
+  <data name="TitleFuse" xml:space="preserve">
+    <value>FUSE-биты</value>
+  </data>
+  <data name="TitleLock" xml:space="preserve">
+    <value>LOCK-биты</value>
+  </data>
+  <data name="TitleRead" xml:space="preserve">
+    <value>Чтение {0}</value>
+  </data>
+  <data name="TitleReadFuse" xml:space="preserve">
+    <value>Чтение FUSE-бит</value>
+  </data>
+  <data name="TitleReadLock" xml:space="preserve">
+    <value>Чтение LOCK-бит</value>
+  </data>
+  <data name="TitleReset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="TitleWrite" xml:space="preserve">
+    <value>Запись {0}</value>
+  </data>
+  <data name="WriteCompleted" xml:space="preserve">
+    <value>Запись {0} успешно завершена</value>
+  </data>
+  <data name="WriteError" xml:space="preserve">
+    <value>Запись {0} завершена с ошибкой {1}</value>
+  </data>
+  <data name="WriteStarted" xml:space="preserve">
+    <value>Запись {0} запущена</value>
+  </data>
+  <data name="WriteStoped" xml:space="preserve">
+    <value>Запись {0} остановлена</value>
+  </data>
+</root>

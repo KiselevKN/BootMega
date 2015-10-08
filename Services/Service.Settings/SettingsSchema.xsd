@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SettingsSchema"
+    targetNamespace="http://tempuri.org/SettingsSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/SettingsSchema.xsd"
+    xmlns:mstns="http://tempuri.org/SettingsSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="settings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="selectedSettings" minOccurs='1' maxOccurs='1'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='memoryType' type='MemoryType' minOccurs='1' maxOccurs='1'/>
+            </xs:sequence>
+            <xs:attribute name='recordRef' type='PK' use='required'/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="processors" minOccurs='1' maxOccurs='1'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='processor' minOccurs='1' maxOccurs='unbounded'>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name='eepromSize' type='MemoryAddress' minOccurs='1' maxOccurs='1'/>
+                    <xs:element name='flashSize' type='MemoryAddress' minOccurs='1' maxOccurs='1'/>
+                    <xs:element name='bootStartAddress' type='MemoryAddress' minOccurs='1' maxOccurs='1'/>
+                    <xs:element name='bootEndAddress' type='MemoryAddressFF' minOccurs='1' maxOccurs='1'/>
+                  </xs:sequence>
+                  <xs:attribute name='ID' type='PK' use='required'/>
+                  <xs:attribute name='Name' type='xs:string' use='required'/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+          <xs:unique name="processorUniqueID">
+            <xs:selector xpath="mstns:processor" />
+            <xs:field xpath="@ID" />
+          </xs:unique>
+          <xs:unique name="processorNameID">
+            <xs:selector xpath="mstns:processor" />
+            <xs:field xpath="@Name" />
+          </xs:unique>
+        </xs:element>
+        <xs:element name="usersRecords" minOccurs='1' maxOccurs='1'>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name='record' minOccurs='1' maxOccurs='unbounded'>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name='name' type='xs:string' minOccurs='1' maxOccurs='1'/>
+                    <xs:element name='serialPortSettings' minOccurs='1' maxOccurs='1'>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name='baudrate'  type='Baudrate'  minOccurs='1' maxOccurs='1'/>
+                          <xs:element name='parity'  type='Parity'  minOccurs='1' maxOccurs='1'/>
+                          <xs:element name='stopbit' type='StopBits' minOccurs='1' maxOccurs='1'/>
+                          <xs:element name='headerTx'  type='Header'  minOccurs='1' maxOccurs='1'/>
+                          <xs:element name='headerRx'  type='Header'  minOccurs='1' maxOccurs='1'/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name='ID' type='PK' use='required'/>
+                  <xs:attribute name='processorRef' type='PK' use='required'/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+          <xs:unique name="recordUniqueID">
+            <xs:selector xpath="mstns:record" />
+            <xs:field xpath="@ID" />
+          </xs:unique>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="PKProcessor">
+      <xs:selector xpath="mstns:processors/mstns:processor"/>
+      <xs:field xpath="@ID"/>
+    </xs:key>
+    <xs:keyref name="FKRecordToProcessor" refer="mstns:PKProcessor">
+      <xs:selector xpath="mstns:usersRecords/mstns:record"/>
+      <xs:field xpath="@processorRef"/>
+    </xs:keyref>
+
+    <xs:key name="PKRecord">
+      <xs:selector xpath="mstns:usersRecords/mstns:record"/>
+      <xs:field xpath="@ID"/>
+    </xs:key>
+    <xs:keyref name="FKSelectedSettingsToRecord" refer="mstns:PKRecord">
+      <xs:selector xpath="mstns:selectedSettings"/>
+      <xs:field xpath="@recordRef"/>
+    </xs:keyref>
+    
+  </xs:element>
+
+  <!-- Simple Type Begin -->
+
+  <xs:simpleType name="Baudrate">
+    <xs:annotation>
+      <xs:documentation>Скорость передачи по последовательному каналу</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="9600"/>
+      <xs:enumeration value="19200"/>
+      <xs:enumeration value="38400"/>
+      <xs:enumeration value="57600"/>
+      <xs:enumeration value="115200"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PK">
+    <xs:annotation>
+      <xs:documentation>Уникальный идентификатор</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Parity">
+    <xs:annotation>
+      <xs:documentation>Бит четности</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation>Контроль четности не осуществляется (None)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Дополнение до нечетности (Odd)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Дополнение до четности (Even)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>Бит четности равен 1 (Mark)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="4">
+        <xs:annotation>
+          <xs:documentation>Бит четности равен 0 (Space)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="StopBits">
+    <xs:annotation>
+      <xs:documentation>Колличество стоповых бит</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation>Стоповые биты не используются</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>Один стоповый бит</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="2">
+        <xs:annotation>
+          <xs:documentation>Два стоповых бита</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="3">
+        <xs:annotation>
+          <xs:documentation>1,5 стоповых бита</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='Header'>
+    <xs:restriction base='xs:string'>
+      <xs:pattern value='^0x([0-9a-fA-F]{2})$'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MemoryAddress">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="^0x([1-9a-fA-F]{1})([0-9a-fA-F]{0,4})00$" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MemoryAddressFF">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="^0x([1-9a-fA-F]{1})([0-9a-fA-F]{0,4})FF$" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MemoryType">
+    <xs:annotation>
+      <xs:documentation>Memory type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int">
+      <xs:enumeration value="0">
+        <xs:annotation>
+          <xs:documentation>FLASH</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="1">
+        <xs:annotation>
+          <xs:documentation>EEPROM</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Simple Type End -->
+
+</xs:schema>

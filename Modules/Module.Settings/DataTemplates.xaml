@@ -1,0 +1,364 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:BootMega.Theme;assembly=BootMega.Theme"
+                    xmlns:conv="clr-namespace:Module.Settings.Converters"
+                    xmlns:m="clr-namespace:Service.Settings.Models;assembly=Service.Settings"
+                    xmlns:vm="clr-namespace:Module.Settings.ViewModels"
+                    xmlns:r="clr-namespace:Module.Settings.Properties">
+
+    <conv:MemoryTypeConverter x:Key="memoryTypeConverter"/>
+    <conv:InvertBooleanConverter x:Key="invertBooleanConverter"/>
+    <conv:BaudRateListToInt32ListConverter x:Key="baudRateListToInt32ListConverter"/>
+    <conv:HeadersConverter x:Key="headersConverter"/>
+    <conv:KiloByteConverter x:Key="kiloByteConverter"/>
+    <conv:BaudRateToInt32Converter x:Key="baudRateToInt32Converter"/>
+    <conv:ListOfProcessorsConverter x:Key="listOfProcessorsConverter"/>
+
+    <DataTemplate DataType="{x:Type m:Processor}">
+        <GroupBox Header="{x:Static r:Resources.Processor}">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.Name}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=Name}"/>
+                </TextBlock>
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.FlashSize}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=FlashSize, Converter={StaticResource kiloByteConverter}}"/>
+                </TextBlock>
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.EepromSize}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=EepromSize, Converter={StaticResource kiloByteConverter}}"/>
+                </TextBlock>
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.AddressOfBootLoaderBegin}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=BootStartAddress, StringFormat=0x{0:X}}"/>
+                </TextBlock>
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.AddressOfBootLoaderEnd}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=BootEndAddress, StringFormat=0x{0:X}}"/>
+                </TextBlock>
+            </StackPanel>
+
+        </GroupBox>
+
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type m:SerialPortSettings}">
+        <GroupBox Header="{x:Static r:Resources.SerialPortSettings}">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.BaudRate}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=BaudRate, Converter={StaticResource baudRateToInt32Converter}}"/>
+                </TextBlock>
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.Parity}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=Parity}"/>
+                </TextBlock>
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.StopBits}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=StopBits}"/>
+                </TextBlock>
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.HeaderTx}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=HeaderTX, StringFormat=0x{0:X}}"/>
+                </TextBlock>
+                <TextBlock Padding="1">
+                    <Run Text="{x:Static r:Resources.HeaderRx}"/>
+                    <Run Text=": "/>
+                    <Run TextDecorations="Underline" Text="{Binding Path=HeaderRX, StringFormat=0x{0:X}}"/>
+                </TextBlock>
+            </StackPanel>
+        </GroupBox>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:AddNewSettingsViewModel}">
+        <DataTemplate.Resources>
+            <Style BasedOn="{StaticResource ComboBox}" TargetType="{x:Type ComboBox}">
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+            <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="2 0"/>
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+        </DataTemplate.Resources>
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="150"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0">
+                <Run Text="{x:Static r:Resources.Name}"/><Run Text=": "/>
+            </TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Grid.Column="0" Grid.Row="1">
+                <Run Text="{x:Static r:Resources.Processor}"/><Run Text=": "/>
+            </TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="1" 
+                      SelectedIndex="{Binding Path=IndexOfTheSelectedProcessor}"
+                      ItemsSource="{Binding Path=ListOfProcessors, Converter={StaticResource listOfProcessorsConverter}}"/>
+            <TextBlock Grid.Column="0" Grid.Row="2">
+                <Run Text="{x:Static r:Resources.BaudRate}"/><Run Text=": "/>
+            </TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="2" 
+                      SelectedIndex="{Binding Path=IndexOfTheSelectedBaudRate}" 
+                      ItemsSource="{Binding Path=ListOfBaudRates, Converter={StaticResource baudRateListToInt32ListConverter}}"/>
+            <TextBlock Grid.Column="0" Grid.Row="3">
+                <Run Text="{x:Static r:Resources.Parity}"/><Run Text=": "/>
+            </TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="3" 
+                      SelectedIndex="{Binding Path=IndexOfTheSelectedParity}"                 
+                      ItemsSource="{Binding Path=ListOfParities}"/>
+            <TextBlock Grid.Column="0" Grid.Row="4">
+                <Run Text="{x:Static r:Resources.StopBits}"/><Run Text=": "/>
+            </TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="4" 
+                      SelectedIndex="{Binding Path=IndexOfTheSelectedStopBits}" 
+                      ItemsSource="{Binding Path=ListOfStopBits}"/>
+            <TextBlock Grid.Column="0" Grid.Row="5">
+                <Run Text="{x:Static r:Resources.HeaderTx}"/><Run Text=": "/>
+            </TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="5" 
+                      ItemsSource="{Binding Path=ListOfAllowableHeaders, Converter={StaticResource headersConverter}}"
+                      SelectedIndex="{Binding Path=IndexOfTheSelectedHeaderTx}"/>
+            <TextBlock Grid.Column="0" Grid.Row="6">
+                <Run Text="{x:Static r:Resources.HeaderRx}"/><Run Text=": "/>
+            </TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="6"
+                      Validation.ValidationAdornerSite="{Binding ElementName=validationHeadersErrorReport}"
+                      ItemsSource="{Binding Path=ListOfAllowableHeaders, Converter={StaticResource headersConverter}}"
+                      SelectedIndex="{Binding Path=IndexOfTheSelectedHeaderRx}"/>
+            <Grid Grid.ColumnSpan="2" Grid.Row="7" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center">
+                    <Label Name="validationHeadersErrorReport" Content="{Binding RelativeSource={RelativeSource Self}, 
+                        Path=(Validation.ValidationAdornerSiteFor).(Validation.Errors).CurrentItem.ErrorContent}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="2 0">
+                    <Button Content="{x:Static r:Resources.ButtonTextAdd}" Command="{Binding OkCommand}"/>
+                    <Button Content="{x:Static r:Resources.ButtonTextCancel}" Command="{Binding CloseCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:RemoveSettingsViewModel}">
+        <DataTemplate.Resources>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="2 0"/>
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+        </DataTemplate.Resources>
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox x:Name="listSettings" 
+                     Grid.Column="0" Grid.Row="0"
+                     Validation.ValidationAdornerSite="{Binding ElementName=validationErrorReport}"
+                     ItemsSource="{Binding Path=ListOfSettings}" 
+                     SelectedIndex="{Binding Path=IndexOfSelectedSettings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     IsSynchronizedWithCurrentItem="True"/>
+            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+                <ContentPresenter  Content="{Binding ElementName=listSettings, Path=SelectedItem.Processor}"/>
+                <ContentControl Content="{Binding ElementName=listSettings, Path=SelectedItem.SerialPortSettings}"/>
+            </StackPanel>
+            <Grid Grid.ColumnSpan="2" Grid.Row="1" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center">
+                    <Label Name="validationErrorReport" Content="{Binding RelativeSource={RelativeSource Self}, 
+                        Path=(Validation.ValidationAdornerSiteFor).(Validation.Errors).CurrentItem.ErrorContent}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="2 0">
+                    <Button Content="{x:Static r:Resources.ButtonTextRemove}" Command="{Binding OkCommand}"/>
+                    <Button Content="{x:Static r:Resources.ButtonTextCancel}" Command="{Binding CloseCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SelectSettingsViewModel}">
+        <DataTemplate.Resources>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="2 0"/>
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+        </DataTemplate.Resources>
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox x:Name="listSettings"  
+                     Grid.Column="0" Grid.Row="0"
+                     Validation.ValidationAdornerSite="{Binding ElementName=validationErrorReport}"
+                     ItemsSource="{Binding Path=ListOfSettings}" 
+                     SelectedIndex="{Binding Path=IndexOfSelectedSettings}"
+                     IsSynchronizedWithCurrentItem="True"/>
+            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+                <ContentPresenter  Content="{Binding ElementName=listSettings, Path=SelectedItem.Processor, Mode=OneWay}"/>
+                <ContentControl Content="{Binding ElementName=listSettings, Path=SelectedItem.SerialPortSettings, Mode=OneWay}"/>
+                <GroupBox Header="{x:Static r:Resources.MemoryType}">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <RadioButton x:Name="flash" Content="FLASH" IsChecked="{Binding MemoryType, Converter={StaticResource memoryTypeConverter}}"/>
+                        <RadioButton Content="EEPROM" IsChecked="{Binding ElementName=flash, Path=IsChecked, Converter={StaticResource invertBooleanConverter}}"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <Grid Grid.ColumnSpan="2" Grid.Row="1" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center">
+                    <Label Name="validationErrorReport" Content="{Binding RelativeSource={RelativeSource Self}, 
+                        Path=(Validation.ValidationAdornerSiteFor).(Validation.Errors).CurrentItem.ErrorContent}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="2 0">
+                    <Button Content="{x:Static r:Resources.ButtonTextSelect}" Command="{Binding OkCommand}"/>
+                    <Button Content="{x:Static r:Resources.ButtonTextCancel}" Command="{Binding CloseCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:UpdateSettingsViewModel}">
+        <DataTemplate.Resources>
+            <Style BasedOn="{StaticResource ComboBox}" TargetType="{x:Type ComboBox}">
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="2 0"/>
+                <Setter Property="Foreground" Value="Red"/>
+            </Style>
+        </DataTemplate.Resources>
+        <Grid Margin="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox x:Name="listOfSettings" 
+                     Grid.Column="0" Grid.Row="0" 
+                     MinWidth="150"
+                     Validation.ValidationAdornerSite="{Binding ElementName=validationListOfSettingsErrorReport}"
+                     SelectedIndex="{Binding Path=IndexOfSelectedSettings}"
+                     ItemsSource="{Binding Path=ListOfSettings}"/>
+            <GroupBox Grid.Column="1" Header="{x:Static r:Resources.Settings}">
+                <Grid  VerticalAlignment="Top" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="150"/>
+                        <ColumnDefinition MinWidth="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="1">
+                        <Run Text="{x:Static r:Resources.Processor}"/><Run Text=": "/>
+                    </TextBlock>
+                    <ComboBox Grid.Column="1" Grid.Row="1" 
+                              SelectedIndex="{Binding Path=IndexOfTheSelectedProcessor}" 
+                              ItemsSource="{Binding Path=ListOfProcessors, Converter={StaticResource listOfProcessorsConverter}}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2">
+                        <Run Text="{x:Static r:Resources.BaudRate}"/><Run Text=": "/>
+                    </TextBlock>
+                    <ComboBox Grid.Column="1" Grid.Row="2"
+                              SelectedIndex="{Binding Path=IndexOfTheSelectedBaudRate}" 
+                              ItemsSource="{Binding Path=ListOfBaudRates, Converter={StaticResource baudRateListToInt32ListConverter}}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3">
+                        <Run Text="{x:Static r:Resources.Parity}"/><Run Text=": "/>
+                    </TextBlock>
+                    <ComboBox Grid.Column="1" Grid.Row="3"
+                              SelectedIndex="{Binding Path=IndexOfTheSelectedParity}" 
+                              ItemsSource="{Binding Path=ListOfParities}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4">
+                        <Run Text="{x:Static r:Resources.StopBits}"/><Run Text=": "/>
+                    </TextBlock>
+                    <ComboBox Grid.Column="1" Grid.Row="4"
+                              SelectedIndex="{Binding Path=IndexOfTheSelectedStopBits}" 
+                              ItemsSource="{Binding Path=ListOfStopBits}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5">
+                        <Run Text="{x:Static r:Resources.HeaderTx}"/><Run Text=": "/>
+                    </TextBlock>
+                    <ComboBox Grid.Column="1" Grid.Row="5"
+                              ItemsSource="{Binding Path=ListOfAllowableHeaders, Converter={StaticResource headersConverter}}"
+                              SelectedIndex="{Binding Path=IndexOfTheSelectedHeaderTx}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6">
+                        <Run Text="{x:Static r:Resources.HeaderRx}"/><Run Text=": "/>
+                    </TextBlock>
+                    <ComboBox Grid.Column="1" Grid.Row="6"
+                              Validation.ValidationAdornerSite="{Binding ElementName=validationHeadersErrorReport}"
+                              ItemsSource="{Binding Path=ListOfAllowableHeaders, Converter={StaticResource headersConverter}}"
+                              SelectedIndex="{Binding Path=IndexOfTheSelectedHeaderRx}"/>
+                </Grid>
+            </GroupBox>
+            <Grid Grid.ColumnSpan="2" Grid.Row="1" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center">
+                    <Label Name="validationListOfSettingsErrorReport" Content="{Binding RelativeSource={RelativeSource Self}, 
+                        Path=(Validation.ValidationAdornerSiteFor).(Validation.Errors).CurrentItem.ErrorContent}"/>
+                    <Label Name="validationHeadersErrorReport" Content="{Binding RelativeSource={RelativeSource Self}, 
+                        Path=(Validation.ValidationAdornerSiteFor).(Validation.Errors).CurrentItem.ErrorContent}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="2 0">
+                    <Button Content="{x:Static r:Resources.ButtonTextUpdate}" Command="{Binding OkCommand}"/>
+                    <Button Content="{x:Static r:Resources.ButtonTextCancel}" Command="{Binding CloseCommand}"/>
+                </StackPanel>
+            </Grid>      
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>

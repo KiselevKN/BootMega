@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="Module.ToolBar.Views.ToolBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Module.ToolBar.ViewModels"
+             xmlns:io="clr-namespace:System.IO.Ports;assembly=System"
+             xmlns:r="clr-namespace:Module.ToolBar.Properties"
+             xmlns:commands="clr-namespace:BootMega.Interaction.Commands;assembly=BootMega.Interaction"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/BootMega.Theme;component/Themes/Generic.xaml"/>
+                <ResourceDictionary>
+                    <DataTemplate DataType="{x:Type vm:ToolBarViewModel}">
+                        <ToolBarTray>
+                            <ToolBar>
+                                <Button ToolTip="{x:Static r:Resources.Settings}"
+                                        Command="{x:Static commands:GlobalCommands.SelectSettingsCommand}">
+                                    <Image Source="{StaticResource SelectSettingsIcon}" Width="16" Height="16"/>
+                                </Button>
+                            </ToolBar>
+                            <ToolBar>
+                                <Button ToolTip="{x:Static r:Resources.OpenFile}"
+                                        Command="{x:Static commands:GlobalCommands.OpenHexFileCommand}">
+                                    <Image Source="{StaticResource OpenFileIcon}" Width="16" Height="16"/>
+                                </Button>
+                                <Button ToolTip="{x:Static r:Resources.SaveFile}"
+                                        Command="{x:Static commands:GlobalCommands.SaveHexFileCommand}">
+                                    <Image Source="{StaticResource SaveFileIcon}" Width="16" Height="16"/>
+                                </Button>
+                                <Button ToolTip="{x:Static r:Resources.CompareFiles}"
+                                        Command="{x:Static commands:GlobalCommands.CompareHexFilesCommand}">
+                                    <Image Source="{StaticResource CompareFilesIcon}" Width="16" Height="16"/>
+                                </Button>
+                            </ToolBar>
+                            <ToolBar>
+                                <Button ToolTip="{x:Static r:Resources.Connection}"
+                                        Command="{x:Static commands:GlobalCommands.ConnectionCommand}">
+                                    <Image Source="{StaticResource ConnectionIcon}" Width="16" Height="16"/>
+                                </Button>
+                                <Separator/>
+                                <ComboBox Width="75" SelectedIndex="{Binding Path=SelectedPortIndex}" 
+                                          ItemsSource="{Binding Path=Ports}"/>
+                                <Separator/>
+                                <Button x:Name="DownloadButton" ToolTip="{x:Static r:Resources.DownloadingInEeprom}"
+                                        Command="{x:Static commands:GlobalCommands.DownloadCommand}">
+                                    <Image Source="{StaticResource DownloadIcon}"  Width="16" Height="16"/>
+                                </Button>
+                                <Button x:Name="UploadButton" ToolTip="{x:Static r:Resources.UploadingFromEeprom}"
+                                        Command="{x:Static commands:GlobalCommands.UploadCommand}">
+                                    <Image Source="{StaticResource UploadIcon}" Width="16" Height="16"/>
+                                </Button>
+                                <Button x:Name="EraseButton" ToolTip="{x:Static r:Resources.EraseEeprom}"
+                                        Command="{x:Static commands:GlobalCommands.EraseCommand}">
+                                    <Image Source="{StaticResource EraseIcon}" Width="16" Height="16"/>
+                                </Button>
+                                <Button ToolTip="{x:Static r:Resources.ReadFuseBits}"
+                                        Command="{x:Static commands:GlobalCommands.ReadFuseCommand}">
+                                    <Image Source="{StaticResource FuseIcon}" Width="16" Height="16"/>
+                                </Button>
+                                <Button ToolTip="{x:Static r:Resources.ReadLockBits}"
+                                        Command="{x:Static commands:GlobalCommands.ReadLockCommand}">
+                                    <Image Source="{StaticResource LockIcon}" Width="16" Height="16"/>
+                                </Button>
+                                <Button ToolTip="{x:Static r:Resources.Reset}"
+                                        Command="{x:Static commands:GlobalCommands.ResetCommand}">
+                                    <Image Source="{StaticResource ResetIcon}" Width="16" Height="16"/>
+                                </Button>
+                            </ToolBar>
+                        </ToolBarTray>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=MemoryType}" Value="true">
+                                <Setter TargetName="DownloadButton" Property="ToolTip" Value="{x:Static r:Resources.DownloadingInFlash}"/>
+                                <Setter TargetName="UploadButton" Property="ToolTip" Value="{x:Static r:Resources.UploadingFromFlash}"/>
+                                <Setter TargetName="EraseButton" Property="ToolTip" Value="{x:Static r:Resources.EraseFlash}"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries> 
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <ContentPresenter Content="{Binding}"/>
+    </Grid>
+</UserControl>
