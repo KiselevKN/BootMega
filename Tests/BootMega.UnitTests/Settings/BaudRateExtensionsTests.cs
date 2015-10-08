@@ -14,7 +14,7 @@ namespace BootMega.UnitTests
         public void BaudRateToInt32()
         {
             BaudRate br = BaudRate.BR_57600;  
-            Assert.AreEqual<int>(57600, br.ToInt32());
+            Assert.AreEqual(57600, br.ToInt32());
         }
 
         #endregion
@@ -26,8 +26,8 @@ namespace BootMega.UnitTests
         public void BaudRateToString()
         {
             BaudRate br = BaudRate.BR_57600;
-            Assert.AreEqual<string>("57600", br.ToString(true));
-            Assert.AreEqual<string>("BR_57600", br.ToString(false));
+            Assert.AreEqual("57600", br.ToString(true));
+            Assert.AreEqual("BR_57600", br.ToString(false));
         }
 
         #endregion

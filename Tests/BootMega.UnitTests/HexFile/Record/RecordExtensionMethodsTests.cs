@@ -30,7 +30,7 @@ namespace BootMega.UnitTests
             Action<string, int> func = (record, expectedValue) =>
             {
                 var numberOfDataBytes = record.GetNumberOfDataBytes();
-                Assert.AreEqual<int>(expectedValue, numberOfDataBytes);
+                Assert.AreEqual(expectedValue, numberOfDataBytes);
             };
 
             func(":020000020000FC", 2);
@@ -45,7 +45,7 @@ namespace BootMega.UnitTests
             Action<string, int> func = (record, expectedValue) =>
             {
                 var numberOfDataBytes = record.GetNumberOfDataBytesInFact();
-                Assert.AreEqual<int>(expectedValue, numberOfDataBytes);
+                Assert.AreEqual(expectedValue, numberOfDataBytes);
             };
 
             func(":020000020000FC", 2);
@@ -119,7 +119,7 @@ namespace BootMega.UnitTests
             Action<string, int> func = (record, expectedValue) =>
             {
                 var checkSum = record.GetCheckSum();
-                Assert.AreEqual<int>(expectedValue, checkSum);
+                Assert.AreEqual(expectedValue, checkSum);
             };
 
             func(":020000020000FC", 0xFC);
@@ -134,7 +134,7 @@ namespace BootMega.UnitTests
             Action<string, int> func = (record, expectedValue) =>
             {
                 var checkSum = record.GetCheckSumInFact();
-                Assert.AreEqual<int>(expectedValue, checkSum);
+                Assert.AreEqual(expectedValue, checkSum);
             };
 
             func(":020000020000FC", 0xFC);

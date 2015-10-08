@@ -59,7 +59,7 @@ namespace BootMega.UnitTests
             XElement xElement = XElement.Parse(xElementProcessors);
             var processors = xElement.ToProcessors(XNamespace.None).ToList();
 
-            Assert.AreEqual<int>(2, processors.Count);
+            Assert.AreEqual(2, processors.Count);
 
             Processor expectedProcessor1 = new Processor(0, "ATMega128", 
                 0x1000, 0x20000, 0x1E000, 0x1FFFF);
@@ -91,7 +91,7 @@ namespace BootMega.UnitTests
                 "<bootEndAddress>0x1FFFF</bootEndAddress>" + "\r\n" +
                 "</processor>";
          
-            Assert.AreEqual<string>(xElementProcessor, xElement.ToString());
+            Assert.AreEqual(xElementProcessor, xElement.ToString());
         }
 
         #endregion
@@ -125,7 +125,7 @@ namespace BootMega.UnitTests
                 "<bootEndAddress>0x3FFFF</bootEndAddress>" + "\r\n" +
                 "</processor>";
 
-            Assert.AreEqual<string>(xExpectedElementProcessor, xElement.ToString());
+            Assert.AreEqual(xExpectedElementProcessor, xElement.ToString());
         }
 
         #endregion

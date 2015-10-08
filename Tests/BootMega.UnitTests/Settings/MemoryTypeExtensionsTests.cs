@@ -14,7 +14,7 @@ namespace BootMega.UnitTests
         public void MemoryTypeToInt32()
         {
             MemoryType mt = MemoryType.FLASH;  
-            Assert.AreEqual<int>(0, mt.ToInt32());
+            Assert.AreEqual(0, mt.ToInt32());
         }
 
         #endregion
@@ -26,8 +26,8 @@ namespace BootMega.UnitTests
         public void MemoryTypeToString()
         {
             MemoryType mt = MemoryType.EEPROM;
-            Assert.AreEqual<string>("1", mt.ToString(true));
-            Assert.AreEqual<string>("EEPROM", mt.ToString(false));
+            Assert.AreEqual("1", mt.ToString(true));
+            Assert.AreEqual("EEPROM", mt.ToString(false));
         }
 
         #endregion
@@ -38,7 +38,7 @@ namespace BootMega.UnitTests
         [TestCategory("MemoryTypeExtensions")]
         public void Int32ToMemoryType()
         {
-            Assert.AreEqual<MemoryType>(MemoryType.FLASH, 0.ToMemoryType());
+            Assert.AreEqual(MemoryType.FLASH, 0.ToMemoryType());
         }
 
         #endregion
@@ -49,8 +49,8 @@ namespace BootMega.UnitTests
         [TestCategory("MemoryTypeExtensions")]
         public void StringToMemoryType()
         {
-            Assert.AreEqual<MemoryType>(MemoryType.FLASH, "0".ToMemoryType(true));
-            Assert.AreEqual<MemoryType>(MemoryType.FLASH, "FLASH".ToMemoryType(false));
+            Assert.AreEqual(MemoryType.FLASH, "0".ToMemoryType(true));
+            Assert.AreEqual(MemoryType.FLASH, "FLASH".ToMemoryType(false));
         }
 
         #endregion

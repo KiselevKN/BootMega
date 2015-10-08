@@ -23,13 +23,13 @@ namespace BootMega.UnitTests
                 new Processor(0, "Name", 0x1000, 0x40000, 0x3E000, 0x3FFFF),
                 new SerialPortSettings(BaudRate.BR_57600, Parity.Even, StopBits.One, 0xA0, 0xA5));
 
-            Assert.AreEqual<string>("Name", s1.ToString());
-            Assert.AreEqual<string>("Name", s2.ToString());
+            Assert.AreEqual("Name", s1.ToString());
+            Assert.AreEqual("Name", s2.ToString());
             Assert.IsTrue(s1.Equals(s2));
 
             s2.Name = "NewName";
 
-            Assert.AreEqual<string>("NewName", s2.ToString());
+            Assert.AreEqual("NewName", s2.ToString());
             Assert.IsFalse(s1.Equals(s2));
         }
 

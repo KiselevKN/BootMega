@@ -16,13 +16,13 @@ namespace BootMega.UnitTests
             Processor p1 = new Processor(0, "Name", 0x1000, 0x40000, 0x3E000, 0x3FFFF);
             Processor p2 = new Processor(0, "Name", 0x1000, 0x40000, 0x3E000, 0x3FFFF);
             
-            Assert.AreEqual<string>("Name", p1.ToString());
-            Assert.AreEqual<string>("Name", p2.ToString());
+            Assert.AreEqual("Name", p1.ToString());
+            Assert.AreEqual("Name", p2.ToString());
             Assert.IsTrue(p1.Equals(p2));
 
             p2.Name = "NewName";
 
-            Assert.AreEqual<string>("NewName", p2.ToString());
+            Assert.AreEqual("NewName", p2.ToString());
             Assert.IsFalse(p1.Equals(p2));            
         }
 

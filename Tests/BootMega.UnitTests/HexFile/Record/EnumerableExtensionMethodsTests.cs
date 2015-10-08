@@ -11,7 +11,7 @@ namespace BootMega.UnitTests
         public void ToHexString()
         {
             byte[] array = new byte[5] { 0x11, 0x22, 0x33, 0x44, 0x55 };
-            Assert.AreEqual<string>("1122334455", array.ToHexString());
+            Assert.AreEqual("1122334455", array.ToHexString());
         }
 
         [TestMethod]

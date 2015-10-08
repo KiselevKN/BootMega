@@ -27,7 +27,7 @@ namespace BootMega.UnitTests
             };
 
             func(new AddressHexRecord(HexRecordType.ExtendedSegmentAddress, 0x10000), ":020000021000EC");
-            Assert.AreEqual<string>(":00000001FF", HexRecord.EOF);
+            Assert.AreEqual(":00000001FF", HexRecord.EOF);
             func(new AddressHexRecord(HexRecordType.ExtendedSegmentAddress, 0), ":020000020000FC");
             func(new DataHexRecord(HexRecordType.Data, 0, new byte[] { 0xFA, 0x00, 0x00, 0x02 }), ":04000000FA00000200");
             func(new DataHexRecord(HexRecordType.Data, 0xC220, new byte[] { 0xF0, 0x4E, 0xF0, 0x5F, 0xF0, 0x6C, 0xF0, 0x7D, 
@@ -43,7 +43,7 @@ namespace BootMega.UnitTests
             {
                 IHexRecordParser parser = new HexRecordParser();
                 string r = parser.UnParse(hexRecord);
-                Assert.AreEqual<string>(expectedRecord, r);
+                Assert.AreEqual(expectedRecord, r);
             };
 
             func(":020000021000EC", new AddressHexRecord(HexRecordType.ExtendedSegmentAddress, 0x10000));

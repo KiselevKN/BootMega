@@ -109,7 +109,7 @@ namespace BootMega.UnitTests
 
             byte[] array = page;
 
-            Assert.AreEqual<int>(Page.Size, array.Length);
+            Assert.AreEqual(Page.Size, array.Length);
             Assert.AreEqual<byte>(0x44, array[0]);
             Assert.AreEqual<byte>(0, array[1]);
             Assert.AreEqual<byte>(0x66, array[255]);

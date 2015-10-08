@@ -15,19 +15,19 @@ namespace BootMega.UnitTests
             Memory memory = new Memory(0x1000);
 
             Assert.AreEqual<long>(0x1000, memory.Size);
-            Assert.AreEqual<int>(0x10, memory.NumberOfPages);
+            Assert.AreEqual(0x10, memory.NumberOfPages);
             Assert.AreEqual<bool>(false, memory.IsExtendedMemory);
 
             memory = new Memory(0x31000);
 
             Assert.AreEqual<long>(0x31000, memory.Size);
-            Assert.AreEqual<int>(0x310, memory.NumberOfPages);
+            Assert.AreEqual(0x310, memory.NumberOfPages);
             Assert.AreEqual<bool>(false, memory.IsExtendedMemory);
 
             memory = new Memory(0x1000000);
 
             Assert.AreEqual<long>(0x1000000, memory.Size);
-            Assert.AreEqual<int>(0x10000, memory.NumberOfPages);
+            Assert.AreEqual(0x10000, memory.NumberOfPages);
             Assert.AreEqual<bool>(true, memory.IsExtendedMemory);
         }
 

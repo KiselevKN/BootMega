@@ -55,7 +55,7 @@ namespace BootMega.UnitTests
                 "<headerRx>0xA5</headerRx>" + "\r\n" +
                 "</serialPortSettings>";
 
-            Assert.AreEqual<string>(xElementSerialPortSettings, xElement.ToString());
+            Assert.AreEqual(xElementSerialPortSettings, xElement.ToString());
         }
 
         #endregion
@@ -91,7 +91,7 @@ namespace BootMega.UnitTests
                 "<headerRx>0xA5</headerRx>" + "\r\n" +
                 "</serialPortSettings>";
 
-            Assert.AreEqual<string>(xExpectedElementSerialPortSettings, xElement.ToString());
+            Assert.AreEqual(xExpectedElementSerialPortSettings, xElement.ToString());
         }
 
         #endregion

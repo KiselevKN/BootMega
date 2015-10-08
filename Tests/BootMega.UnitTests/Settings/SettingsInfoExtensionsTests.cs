@@ -23,7 +23,7 @@ namespace BootMega.UnitTests
             var ns = doc.Root.GetDefaultNamespace();
             var settings = doc.Element(ns + "settings").ToSettingsInfo(ns).ToList();
             
-            Assert.AreEqual<int>(2, settings.Count);
+            Assert.AreEqual(2, settings.Count);
 
             SettingsInfo si1 = new SettingsInfo(0, "ОПС24Н-1 КО", 
                 new Processor(0, "ATMega2560", 0x1000, 0x40000, 0x3E000, 0x3FFFF),
@@ -78,7 +78,7 @@ namespace BootMega.UnitTests
                 "</record>";
             Console.WriteLine(xExpectedElementRecord);
             Console.WriteLine(xElement.ToString());
-            Assert.AreEqual<string>(xExpectedElementRecord, xElement.ToString());
+            Assert.AreEqual(xExpectedElementRecord, xElement.ToString());
         }
 
         #endregion 

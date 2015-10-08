@@ -35,7 +35,7 @@ namespace BootMega.UnitTests.IO
 
             var buf = ctx1.Pack();
             Assert.IsTrue(ctx2.UnPack(buf));
-            Assert.AreEqual<int>(0xFFFFFF, ctx2.PageNumber);
+            Assert.AreEqual(0xFFFFFF, ctx2.PageNumber);
             Console.WriteLine(buf.ToString());
 
             var crx1 = new ProtocolErasePageRx(0x81, Mode.EraseFlashPage);
@@ -44,7 +44,7 @@ namespace BootMega.UnitTests.IO
 
             buf = crx1.Pack();
             Assert.IsTrue(crx2.UnPack(buf));
-            Assert.AreEqual<int>(0x7FFF, crx2.PageNumber);
+            Assert.AreEqual(0x7FFF, crx2.PageNumber);
             Console.WriteLine(buf.ToString());
         }
 
@@ -58,7 +58,7 @@ namespace BootMega.UnitTests.IO
 
             var buf = ctx1.Pack();
             Assert.IsTrue(ctx2.UnPack(buf));
-            Assert.AreEqual<int>(0xFFFFFF, ctx2.PageNumber);
+            Assert.AreEqual(0xFFFFFF, ctx2.PageNumber);
             Console.WriteLine(buf.ToString());
 
             var crx1 = new ProtocolIsEmptyPageRx(0x81, Mode.IsEmptyFlashPage);
@@ -68,7 +68,7 @@ namespace BootMega.UnitTests.IO
 
             buf = crx1.Pack();
             Assert.IsTrue(crx2.UnPack(buf));
-            Assert.AreEqual<int>(0x7FFF, crx2.PageNumber);
+            Assert.AreEqual(0x7FFF, crx2.PageNumber);
             Assert.IsTrue(crx2.IsEmpty);
             Console.WriteLine(buf.ToString());
         }
@@ -84,8 +84,8 @@ namespace BootMega.UnitTests.IO
 
             var buf = ctx1.Pack();
             Assert.IsTrue(ctx2.UnPack(buf));
-            Assert.AreEqual<int>(0xFFFFFF, ctx2.PageNumber);
-            Assert.AreEqual<int>(15, ctx2.PageLineNumber);
+            Assert.AreEqual(0xFFFFFF, ctx2.PageNumber);
+            Assert.AreEqual(15, ctx2.PageLineNumber);
             Console.WriteLine(buf.ToString());
 
             var crx1 = new ProtocolReadPageRx(0x81, Mode.ReadFlashPage);
@@ -98,8 +98,8 @@ namespace BootMega.UnitTests.IO
 
             buf = crx1.Pack();
             Assert.IsTrue(crx2.UnPack(buf));
-            Assert.AreEqual<int>(0x7FFF, crx2.PageNumber);
-            Assert.AreEqual<int>(1, crx2.PageLineNumber);
+            Assert.AreEqual(0x7FFF, crx2.PageNumber);
+            Assert.AreEqual(1, crx2.PageLineNumber);
             Assert.AreEqual<byte>(0xE4, crx2.Line[0]);
             Assert.AreEqual<byte>(0xFE, crx2.Line[7]);
             Assert.AreEqual<byte>(0x45, crx2.Line[15]);
@@ -117,8 +117,8 @@ namespace BootMega.UnitTests.IO
 
             var buf = ctx1.Pack();
             Assert.IsTrue(ctx2.UnPack(buf));
-            Assert.AreEqual<int>(0xFFFFFF, ctx2.PageNumber);
-            Assert.AreEqual<int>(15, ctx2.PageLineNumber);
+            Assert.AreEqual(0xFFFFFF, ctx2.PageNumber);
+            Assert.AreEqual(15, ctx2.PageLineNumber);
             Console.WriteLine(buf.ToString());
 
             var crx1 = new ProtocolWritePageTx(0x81, Mode.WriteFlashPage);
@@ -131,8 +131,8 @@ namespace BootMega.UnitTests.IO
 
             buf = crx1.Pack();
             Assert.IsTrue(crx2.UnPack(buf));
-            Assert.AreEqual<int>(0x7FFF, crx2.PageNumber);
-            Assert.AreEqual<int>(1, crx2.PageLineNumber);
+            Assert.AreEqual(0x7FFF, crx2.PageNumber);
+            Assert.AreEqual(1, crx2.PageLineNumber);
             Assert.AreEqual<byte>(0xE4, crx2.Line[0]);
             Assert.AreEqual<byte>(0xFE, crx2.Line[7]);
             Assert.AreEqual<byte>(0x45, crx2.Line[15]);
