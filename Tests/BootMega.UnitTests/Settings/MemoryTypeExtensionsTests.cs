@@ -38,7 +38,7 @@ namespace BootMega.UnitTests
         [TestCategory("MemoryTypeExtensions")]
         public void Int32ToMemoryType()
         {
-            Assert.AreEqual<MemoryType>(MemoryType.FLASH, ((int)0).ToMemoryType());
+            Assert.AreEqual<MemoryType>(MemoryType.FLASH, 0.ToMemoryType());
         }
 
         #endregion

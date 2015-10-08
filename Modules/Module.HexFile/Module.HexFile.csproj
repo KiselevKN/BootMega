@@ -115,8 +115,8 @@
     <Compile Include="Converters\AddressToStringConverter.cs" />
     <Compile Include="Converters\ByteToStringConverter.cs" />
     <Compile Include="Converters\FilesToFileNamesConverter .cs" />
-    <Compile Include="Converters\MaxScrollConverter.cs" />
-    <Compile Include="Converters\ValueScrollConverter.cs" />
+    <Compile Include="Converters\ScrollBarMaximumConverter.cs" />
+    <Compile Include="Converters\ScrollBarValueConverter.cs" />
     <Compile Include="HexFileManagerModule.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Addresses.cs" />

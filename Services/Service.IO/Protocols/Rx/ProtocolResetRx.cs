@@ -14,14 +14,21 @@ namespace Service.IO.Protocols.Rx
 
         #region ctors
 
-        public ProtocolResetRx(byte header)
-            : base(header, 0x5A, Mode.Reset, new CheckSumXOR7FManager()) { }
+        public ProtocolResetRx(byte header) : base(header, 0x5A, Mode.Reset, new CheckSumXOR7FManager())
+        {
+        }
 
         #endregion
 
         #region properties
 
-        public byte ExtendedConfirmation { get { return extendedConfirmation; } }
+        public byte ExtendedConfirmation
+        {
+            get
+            {
+                return extendedConfirmation;
+            }
+        }
 
         #endregion
 

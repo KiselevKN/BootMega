@@ -4,39 +4,33 @@ namespace Module.HexFile.Models
 {
     public class Address : BindableBase
     {
-        #region properties
-
-        #region long Value
+        #region fields
 
         private long value;
+        private long maximum;
+        private long minimum;
+
+        #endregion
+
+        #region properties
+
         public long Value
         {
             get { return value; }
             set { SetProperty(ref this.value, value); }
         }
 
-        #endregion
-
-        #region long Maximum
-
-        private long maximum;
         public long Maximum
         {
             get { return maximum; }
             set { SetProperty(ref maximum, value); }
         }
 
-        #endregion
-
-        #region long Minimum
-        
-        private long minimum;
         public long Minimum
         {
             get { return minimum; }
             set { SetProperty(ref minimum, value); }
         }
-        #endregion
 
         #endregion
     }

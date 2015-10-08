@@ -8,8 +8,9 @@ namespace Service.IO.Protocols.Tx
     {
         #region ctors
 
-        public ProtocolErasePageTx(byte header, Mode regim)
-            : base(header, 0x55, regim, new CheckSumXOR7FManager()) { }
+        public ProtocolErasePageTx(byte header, Mode regim) : base(header, 0x55, regim, new CheckSumXOR7FManager())
+        {
+        }
 
         #endregion
 
@@ -43,8 +44,7 @@ namespace Service.IO.Protocols.Tx
             if (!base.UnPack(buffer))
                 return false;
 
-            PageNumber = (int)(buffer[6] << 21) +
-                (int)(buffer[5] << 14) + (int)(buffer[4] << 7) + buffer[3];
+            PageNumber = (buffer[6] << 21) + (buffer[5] << 14) + (buffer[4] << 7) + buffer[3];
 
             return true;
         }

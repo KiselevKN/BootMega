@@ -194,10 +194,10 @@ namespace Module.HexFile.ViewModels
                 init = true;
                 leftPage = new MemoryPage();
                 rightPage = new MemoryPage();
-                addresses = new Addresses((long)(leftMemory.Size - 0x100));
+                addresses = new Addresses(leftMemory.Size - 0x100);
                 Address = new Address();
                 Address.PropertyChanged += Address_PropertyChanged;
-                Address.Maximum = (long)(leftMemory.Size - 0x100);
+                Address.Maximum = leftMemory.Size - 0x100;
                 AddressesOfDiffPages = new ObservableCollection<string>();
             }
             AddressesOfDiffPages.Clear();
@@ -218,7 +218,7 @@ namespace Module.HexFile.ViewModels
         private void Update()
         {
             for (int i = 0; i < 16; i++)
-                Addresses.Values[i].Value = Address.Value + (long)(i * 16);
+                Addresses.Values[i].Value = Address.Value + i * 16;
 
             for (int i = 0; i < 256; i++)
             {

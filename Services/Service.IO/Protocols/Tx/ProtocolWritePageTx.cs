@@ -47,12 +47,12 @@ namespace Service.IO.Protocols.Tx
                 buffer[24] |= (byte)((Line[k] >> (7 - k)) & (0x01 << k));
                 buffer[25] |= (byte)((Line[7 + k] >> (7 - k)) & (0x01 << k));
             }
-            buffer[24] &= (byte)0x7F;
-            buffer[25] &= (byte)0x7F;
+            buffer[24] &= 0x7F;
+            buffer[25] &= 0x7F;
 
             buffer[26] |= (byte)((Line[14] >> 7) & 0x01);
             buffer[26] |= (byte)((Line[15] >> 6) & 0x02);
-            buffer[26] &= (byte)0x03;
+            buffer[26] &= 0x03;
 
             checkSumManager.Calculate(buffer);
 
@@ -64,9 +64,9 @@ namespace Service.IO.Protocols.Tx
             if (!base.UnPack(buffer))
                 return false;
 
-            PageNumber = (int)(buffer[6] << 21) +
-                (int)(buffer[5] << 14) + (int)(buffer[4] << 7) + buffer[3];
-            PageLineNumber = (int)buffer[7];
+            PageNumber = (buffer[6] << 21) +
+                (buffer[5] << 14) + (buffer[4] << 7) + buffer[3];
+            PageLineNumber = buffer[7];
 
             for (int i = 0; i < PageLine.Size; i++)
                 Line[i] = buffer[8 + i];

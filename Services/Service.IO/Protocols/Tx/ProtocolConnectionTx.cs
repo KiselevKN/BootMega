@@ -14,8 +14,9 @@ namespace Service.IO.Protocols.Tx
 
         #region ctors
 
-        public ProtocolConnectionTx(byte header) 
-            : base(header, 0x55, Mode.Connection, new CheckSumXOR7FManager()) {}
+        public ProtocolConnectionTx(byte header) : base(header, 0x55, Mode.Connection, new CheckSumXOR7FManager())
+        {
+        }
 
         #endregion
 
@@ -48,7 +49,7 @@ namespace Service.IO.Protocols.Tx
                 return false;
 
             for (int i = 0; i < Request.Length; i++)
-                if (buffer[3 + i] != (byte)Request[i])
+                if (buffer[3 + i] != Request[i])
                     return false;
 
             return true;

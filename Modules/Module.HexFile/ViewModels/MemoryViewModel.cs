@@ -25,13 +25,13 @@ namespace Module.HexFile.ViewModels
         {
             this.memory = memory;
             page = new MemoryPage();
-            addresses = new Addresses((long)(memory.Size - 0x100));
+            addresses = new Addresses(memory.Size - 0x100);
             Address = new Address();
             Address.PropertyChanged += Address_PropertyChanged;
-            Address.Maximum = (long)(memory.Size - 0x100);
+            Address.Maximum = memory.Size - 0x100;
             size = (int)memory.Size / 1024;
-            fillingFactor = (long)memory.FillingFactor;
-            fillingFactorPercents = (double)fillingFactor / (double)memory.Size * 100.0;
+            fillingFactor = memory.FillingFactor;
+            fillingFactorPercents = fillingFactor / (double)memory.Size * 100.0;
         }
 
         ~MemoryViewModel()
@@ -46,7 +46,7 @@ namespace Module.HexFile.ViewModels
         void Address_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             for (int i = 0; i < 16; i++)
-                Addresses.Values[i].Value = Address.Value + (long)(i * 16);
+                Addresses.Values[i].Value = Address.Value + i * 16;
 
             for (int i = 0; i < 256; i++)
                 Page.Cells[i].Value = memory[Address.Value + i];

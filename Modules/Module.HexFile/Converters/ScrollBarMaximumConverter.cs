@@ -4,19 +4,17 @@ using System.Globalization;
 
 namespace Module.HexFile.Converters
 {
-    public class ValueScrollConverter : IValueConverter
+    public class ScrollBarMaximumConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            long v = (long)value;
-            double max = (double)(v/0x10);
-            return max;
+            long max = (long)value;
+            return max / 0x10;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double v = (double)value;
-            return (object)(v * 0x10);
+            throw new NotImplementedException();
         }
     }
 }

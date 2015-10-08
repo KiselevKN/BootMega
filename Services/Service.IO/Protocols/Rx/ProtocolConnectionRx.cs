@@ -15,8 +15,9 @@ namespace Service.IO.Protocols.Rx
 
         #region ctors
 
-        public ProtocolConnectionRx(byte header)
-            : base(header, 0x5A, Mode.Connection, new CheckSumXOR7FManager()) { }
+        public ProtocolConnectionRx(byte header) : base(header, 0x5A, Mode.Connection, new CheckSumXOR7FManager())
+        {
+        }
 
         #endregion
 
@@ -33,7 +34,7 @@ namespace Service.IO.Protocols.Rx
         public int Version { get; set; }
         
         /// <summary>
-        /// Сreation date firmware
+        /// Сreation date
         /// </summary>
         public DateTime Date { get; set; }
 
@@ -79,7 +80,7 @@ namespace Service.IO.Protocols.Rx
                 return false;
 
             for (int i = 0; i < ConfirmationString.Length; i++)
-                if (buffer[3 + i] != (byte)ConfirmationString[i])
+                if (buffer[3 + i] != ConfirmationString[i])
                     return false;
 
             Version = Convert.ToInt32(new string(new char[] { (char)buffer[15], (char)buffer[16] }));

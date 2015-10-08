@@ -31,7 +31,6 @@ namespace Module.HexFile.ViewModels
         private ObservableCollection<HexFileViewModel> _files = new ObservableCollection<HexFileViewModel>();
         private ReadOnlyObservableCollection<HexFileViewModel> _readonyFiles = null;
         private HexFileViewModel _activeDocument = null;
-
         private ICommand openFileCommand;
         private ICommand saveFileCommand;
         private ICommand saveAllFilesCommand;

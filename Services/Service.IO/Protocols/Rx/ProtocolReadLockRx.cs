@@ -8,8 +8,9 @@ namespace Service.IO.Protocols.Rx
     {
         #region ctors
 
-        public ProtocolReadLockRx(byte header)
-            : base(header, 0x5A, Mode.ReadLock, new CheckSumXOR7FManager()) { }
+        public ProtocolReadLockRx(byte header) : base(header, 0x5A, Mode.ReadLock, new CheckSumXOR7FManager())
+        {
+        }
 
         #endregion
 

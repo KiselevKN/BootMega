@@ -45,9 +45,9 @@ namespace Service.IO.Protocols.Tx
             if (!base.UnPack(buffer))
                 return false;
 
-            PageNumber = (int)(buffer[6] << 21) + (int)(buffer[5] << 14) + (int)(buffer[4] << 7) + buffer[3];
+            PageNumber = (buffer[6] << 21) + (buffer[5] << 14) + (buffer[4] << 7) + buffer[3];
 
-            PageLineNumber = (int)buffer[7];
+            PageLineNumber = buffer[7];
 
             return true;
         }

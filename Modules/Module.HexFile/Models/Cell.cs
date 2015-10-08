@@ -4,17 +4,17 @@ namespace Module.HexFile.Models
 {
     public class Cell : BindableBase
     {
+        #region consts
+
+        public const byte Empty = 0xFF;
+
+        #endregion
+
         #region fields
 
         private byte value;
         private bool inCompareMode;
         private bool notEqual;
-
-        #endregion
-
-        #region consts
-
-        public const byte Empty = 0xFF;
 
         #endregion
 

@@ -9,8 +9,9 @@ namespace Service.IO.Protocols.Rx
     {
         #region ctors
 
-        public ProtocolIsEmptyPageRx(byte header, Mode regim)
-            : base(header, 0x5A, regim, new CheckSumXOR7FManager()) { }
+        public ProtocolIsEmptyPageRx(byte header, Mode regim) : base(header, 0x5A, regim, new CheckSumXOR7FManager())
+        {
+        }
 
         #endregion
 
@@ -45,7 +46,7 @@ namespace Service.IO.Protocols.Rx
         {
             if (!base.UnPack(buffer))
                 return false;
-            PageNumber = (int)(buffer[6] << 21) + (int)(buffer[5] << 14) + (int)(buffer[4] << 7) + buffer[3];
+            PageNumber = (buffer[6] << 21) + (buffer[5] << 14) + (buffer[4] << 7) + buffer[3];
             IsEmpty = (buffer[7] == 1);
 
             return true;

@@ -8,8 +8,10 @@ namespace Service.IO.Protocols.Rx
     {
         #region ctors
 
-        public ProtocolReadFuseRx(byte header)
-            : base(header, 0x5A, Mode.ReadFuse, new CheckSumXOR7FManager()) { }
+        public ProtocolReadFuseRx(byte header) : base(header, 0x5A, Mode.ReadFuse, new CheckSumXOR7FManager())
+        {
+
+        }
 
         #endregion
 

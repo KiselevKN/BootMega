@@ -95,7 +95,7 @@ namespace Service.HexFile
                     addressHexRecord = new AddressHexRecord(type, i);
                     firstSegmentAddress = true;
                 }
-                line[(int)(i & 0x0F)] = memory[i];
+                line[i & 0x0F] = memory[i];
                 if ((int)(i & 0x0F) == 0xF)
                 {
                     if (!line.IsEmpty())

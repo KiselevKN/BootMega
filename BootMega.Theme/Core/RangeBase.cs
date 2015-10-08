@@ -15,7 +15,7 @@ namespace BootMega.Theme.Core
         #region public T Minimum
 
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(T), typeof(RangeBase<T>),
-            (PropertyMetadata)new FrameworkPropertyMetadata((object)default(T), new PropertyChangedCallback(RangeBase<T>.OnMinimumChanged)));
+            new FrameworkPropertyMetadata((object)default(T), new PropertyChangedCallback(RangeBase<T>.OnMinimumChanged)));
 
         [Category("Behavior")]
         [Bindable(true)]
@@ -27,7 +27,7 @@ namespace BootMega.Theme.Core
             }
             set
             {
-                SetValue(RangeBase<T>.MinimumProperty, (object)value);
+                SetValue(RangeBase<T>.MinimumProperty, value);
             }
         }
 
@@ -49,7 +49,7 @@ namespace BootMega.Theme.Core
         #region public T Maximumy
 
         public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(T), typeof(RangeBase<T>),
-            (PropertyMetadata)new FrameworkPropertyMetadata((object)default(T), new PropertyChangedCallback(RangeBase<T>.OnMaximumChanged),
+            new FrameworkPropertyMetadata((object)default(T), new PropertyChangedCallback(RangeBase<T>.OnMaximumChanged),
                 new CoerceValueCallback(RangeBase<T>.CoerceMaximum)));
 
         [Category("Behavior")]
@@ -62,7 +62,7 @@ namespace BootMega.Theme.Core
             }
             set
             {
-                SetValue(RangeBase<T>.MaximumProperty, (object)value);
+                SetValue(RangeBase<T>.MaximumProperty, value);
             }
         }
 
@@ -70,7 +70,7 @@ namespace BootMega.Theme.Core
         {
             T minimum = ((RangeBase<T>)d).Minimum;
             if (((T)value).CompareTo(minimum) < 0)
-                return (object)minimum;
+                return minimum;
             else
                 return value;
         }
@@ -95,8 +95,8 @@ namespace BootMega.Theme.Core
             typeof(RoutedPropertyChangedEventHandler<T>), typeof(RangeBase<T>));
         
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(T), typeof(RangeBase<T>),
-            (PropertyMetadata)new FrameworkPropertyMetadata((object)default(T), 
-                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault | FrameworkPropertyMetadataOptions.Journal, 
+            new FrameworkPropertyMetadata((object)default(T),
+                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault | FrameworkPropertyMetadataOptions.Journal,
                 new PropertyChangedCallback(RangeBase<T>.OnValueChanged), new CoerceValueCallback(RangeBase<T>.ConstrainToRange)));
 
         [Category("Behavior")]
@@ -109,7 +109,7 @@ namespace BootMega.Theme.Core
             }
             set
             {
-                SetValue(RangeBase<T>.ValueProperty, (object)value);
+                SetValue(RangeBase<T>.ValueProperty, value);
             }
         }
 
@@ -118,11 +118,11 @@ namespace BootMega.Theme.Core
         {
             add
             {
-                AddHandler(RangeBase<T>.ValueChangedEvent, (Delegate)value);
+                AddHandler(RangeBase<T>.ValueChangedEvent, value);
             }
             remove
             {
-                RemoveHandler(RangeBase<T>.ValueChangedEvent, (Delegate)value);
+                RemoveHandler(RangeBase<T>.ValueChangedEvent, value);
             }
         }
 
@@ -132,10 +132,10 @@ namespace BootMega.Theme.Core
             T minimum = rangeBase.Minimum;
             T num = (T)value;
             if (num.CompareTo(minimum) < 0)
-                return (object)minimum;
+                return minimum;
             T maximum = rangeBase.Maximum;
             if (num.CompareTo(maximum) > 0)
-                return (object)maximum;
+                return maximum;
             else
                 return value;
         }
@@ -150,7 +150,7 @@ namespace BootMega.Theme.Core
         {
             RoutedPropertyChangedEventArgs<T> changedEventArgs = new RoutedPropertyChangedEventArgs<T>(oldValue, newValue);
             changedEventArgs.RoutedEvent = RangeBase<T>.ValueChangedEvent;
-            RaiseEvent((RoutedEventArgs)changedEventArgs);
+            RaiseEvent(changedEventArgs);
         }
 
         #endregion

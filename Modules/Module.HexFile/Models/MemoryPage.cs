@@ -4,15 +4,15 @@ namespace Module.HexFile.Models
 {
     public class MemoryPage
     {
-        #region fields
-
-        private List<Cell> cells;
-
-        #endregion
-
         #region consts
 
         public const int Size = 256;
+
+        #endregion
+
+        #region fields
+
+        private List<Cell> cells;
 
         #endregion
 

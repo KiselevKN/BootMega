@@ -38,7 +38,7 @@ namespace BootMega.UnitTests
         [TestCategory("BaudRateExtensions")]
         public void Int32ToBaudRate()
         {
-            Assert.AreEqual<BaudRate>(BaudRate.BR_115200, ((int)115200).ToBaudRate());
+            Assert.AreEqual<BaudRate>(BaudRate.BR_115200, 115200.ToBaudRate());
         }
 
         #endregion
