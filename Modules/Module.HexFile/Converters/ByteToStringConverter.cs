@@ -11,7 +11,7 @@ namespace Module.HexFile.Converters
             byte v = (byte)value;
             var ch = System.Convert.ToChar(v);
             var condition = (char.IsDigit(ch) || char.IsLetter(ch) || char.IsPunctuation(ch));
-            return ((v < 0x80) && condition) ? (object)ch.ToString() : (object)" ";
+            return ((v < 0x80) && condition) ? ch.ToString() : " ";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

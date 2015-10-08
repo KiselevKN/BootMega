@@ -39,10 +39,7 @@ namespace Module.IO.ViewModels
             get
             {
                 var resourceDictionary = new ResourceDictionary();
-                resourceDictionary.Source =
-                    new Uri("/BootMega.Theme;component/Themes/Generic.xaml",
-                            UriKind.RelativeOrAbsolute);
-
+                resourceDictionary.Source = new Uri("/BootMega.Theme;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute);
                 return resourceDictionary["UploadWhiteIcon"] as DrawingImage;
             }
         }
@@ -51,8 +48,7 @@ namespace Module.IO.ViewModels
 
         #region ctors
 
-        public ReadViewModel(SelectedSettings settings, string portName, ILoggerFacade logger)
-            : base(settings, portName, logger)
+        public ReadViewModel(SelectedSettings settings, string portName, ILoggerFacade logger) : base(settings, portName, logger)
         {
             Text = String.Format(Resources.TextAnalysis, GetMemoryType());
             taskmIsEmptyPage = new TaskManager<List<int>, double>((taskManager) =>

@@ -6,7 +6,7 @@ using Module.HexFile.ViewModels;
 
 namespace Module.HexFile.Converters
 {
-    public class ListOfFilesConverter : IValueConverter
+    public class FilesToFileNamesConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

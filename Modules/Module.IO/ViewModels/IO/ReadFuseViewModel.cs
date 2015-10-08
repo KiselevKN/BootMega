@@ -19,8 +19,7 @@ namespace Module.IO.ViewModels
 
         #region ctors
 
-        public ReadFuseViewModel(SelectedSettings settings, string portName, ILoggerFacade logger)
-            : base(settings, portName, logger)
+        public ReadFuseViewModel(SelectedSettings settings, string portName, ILoggerFacade logger) : base(settings, portName, logger)
         {
 
             Text = Resources.TextReadFuse;
@@ -59,10 +58,7 @@ namespace Module.IO.ViewModels
             get
             {
                 var resourceDictionary = new ResourceDictionary();
-                resourceDictionary.Source =
-                    new Uri("/BootMega.Theme;component/Themes/Generic.xaml",
-                            UriKind.RelativeOrAbsolute);
-
+                resourceDictionary.Source = new Uri("/BootMega.Theme;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute);
                 return resourceDictionary["FuseWhiteIcon"] as DrawingImage;
             }
         }

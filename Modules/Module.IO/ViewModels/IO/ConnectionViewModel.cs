@@ -96,10 +96,7 @@ namespace Module.IO.ViewModels
             get
             {
                 var resourceDictionary = new ResourceDictionary();
-                resourceDictionary.Source =
-                    new Uri("/BootMega.Theme;component/Themes/Generic.xaml",
-                            UriKind.RelativeOrAbsolute);
-
+                resourceDictionary.Source = new Uri("/BootMega.Theme;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute);
                 return resourceDictionary["ConnectionWhiteIcon"] as DrawingImage;
             }
         }

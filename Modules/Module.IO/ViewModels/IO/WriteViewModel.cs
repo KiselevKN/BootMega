@@ -47,8 +47,7 @@ namespace Module.IO.ViewModels
 
         #region ctors
 
-        public WriteViewModel(SelectedSettings settings, string portName, ILoggerFacade logger, IMemory memory)
-            : base(settings, portName, logger)
+        public WriteViewModel(SelectedSettings settings, string portName, ILoggerFacade logger, IMemory memory) : base(settings, portName, logger)
         {
             Text = String.Format(Resources.TextWrite, GetMemoryType());
             taskm = new TaskManager<bool, double>((taskManager) =>

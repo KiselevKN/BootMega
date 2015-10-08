@@ -31,7 +31,7 @@
     <conv:AddressToStringConverter x:Key="addressToStringConverter"/>
     <conv:MaxScrollConverter x:Key="maxScrollConverter"/>
     <conv:ValueScrollConverter x:Key="valueScrollConverter"/>
-    <conv:ListOfFilesConverter x:Key="listOfFilesConverter"/>
+    <conv:FilesToFileNamesConverter x:Key="listOfFilesConverter"/>
     
     <Style x:Key="textBlockStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="12"/>

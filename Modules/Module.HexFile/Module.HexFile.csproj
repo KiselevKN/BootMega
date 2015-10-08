@@ -114,7 +114,7 @@
     <Compile Include="Converters\ActiveDocumentConverter.cs" />
     <Compile Include="Converters\AddressToStringConverter.cs" />
     <Compile Include="Converters\ByteToStringConverter.cs" />
-    <Compile Include="Converters\ListOfFilesConverter.cs" />
+    <Compile Include="Converters\FilesToFileNamesConverter .cs" />
     <Compile Include="Converters\MaxScrollConverter.cs" />
     <Compile Include="Converters\ValueScrollConverter.cs" />
     <Compile Include="HexFileManagerModule.cs" />

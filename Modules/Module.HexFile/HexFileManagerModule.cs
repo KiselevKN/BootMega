@@ -24,7 +24,7 @@ namespace Module.HexFile
         public void Initialize()
         {
             logger.Log(Resources.InitializingHexFileManagerModule, Category.Debug, Priority.None);
-            container.RegisterType<IHexFileManager, Service.HexFile.HexFileManager>();
+            container.RegisterType<IHexFileManager, HexFileManager>();
             regionManager.RegisterViewWithRegion("HexFileManagerRegion", typeof(HexFileManagerView));
         }
     }

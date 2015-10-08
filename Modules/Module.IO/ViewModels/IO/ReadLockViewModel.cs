@@ -19,8 +19,7 @@ namespace Module.IO.ViewModels
 
         #region ctors
 
-        public ReadLockViewModel(SelectedSettings settings, string portName, ILoggerFacade logger)
-            : base(settings, portName, logger)
+        public ReadLockViewModel(SelectedSettings settings, string portName, ILoggerFacade logger) : base(settings, portName, logger)
         {
             Text = Resources.TextReadLock;
 
@@ -58,10 +57,7 @@ namespace Module.IO.ViewModels
             get
             {
                 var resourceDictionary = new ResourceDictionary();
-                resourceDictionary.Source =
-                    new Uri("/BootMega.Theme;component/Themes/Generic.xaml",
-                            UriKind.RelativeOrAbsolute);
-
+                resourceDictionary.Source = new Uri("/BootMega.Theme;component/Themes/Generic.xaml", UriKind.RelativeOrAbsolute);
                 return resourceDictionary["LockWhiteIcon"] as DrawingImage;
             }
         }
