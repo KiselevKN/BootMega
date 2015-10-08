@@ -11,7 +11,7 @@ namespace Service.HexFile.Record
         /// </summary>
         /// <param name="data">Data bytes</param>
         /// <returns>Hex string</returns>
-        internal static String ToHexString(this IEnumerable<Byte> bytes)
+        internal static string ToHexString(this IEnumerable<byte> bytes)
         {
             StringBuilder sb = new StringBuilder();
             foreach (var b in bytes)
@@ -24,15 +24,15 @@ namespace Service.HexFile.Record
         /// </summary>
         /// <param name="bytes">Data bytes</param>
         /// <returns>Checksum</returns>
-        internal static Byte Checksum(this IEnumerable<Byte> bytes)
+        internal static byte Checksum(this IEnumerable<byte> bytes)
         {
-            Int32 checkSum = 0;
+            int checkSum = 0;
             foreach (var b in bytes)
                 checkSum += b;
             checkSum &= 0xFF;
             checkSum = 0x100 - checkSum;
             checkSum &= 0xFF;
-            return (Byte)checkSum;
+            return (byte)checkSum;
         }
     }
 }

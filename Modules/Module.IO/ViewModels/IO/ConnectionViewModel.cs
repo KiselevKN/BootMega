@@ -46,7 +46,7 @@ namespace Module.IO.ViewModels
 
         private void taskm_Faulted(object sender, TaskFaultedEventArgs e)
         {
-            logger.Log(String.Format(Resources.ConnectionError, e.Exception), Category.Exception, Priority.None);
+            logger.Log(string.Format(Resources.ConnectionError, e.Exception), Category.Exception, Priority.None);
             Exception = e.Exception;
             Dlg.Result = false;
             Dlg.Close();

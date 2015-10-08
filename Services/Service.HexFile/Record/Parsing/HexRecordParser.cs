@@ -1,12 +1,10 @@
 ﻿namespace Service.HexFile.Record.Parsing
 {
-    using System;
-
     internal class HexRecordParser : IHexRecordParser
     {
         #region IHexRecordParser Members
 
-        public HexRecord Parse(String record)
+        public HexRecord Parse(string record)
         {
             switch(record.GetRecordType())
             {
@@ -18,7 +16,7 @@
             }
         }
 
-        public String UnParse(HexRecord hexRecord)
+        public string UnParse(HexRecord hexRecord)
         {
             return hexRecord.ToString();
         }

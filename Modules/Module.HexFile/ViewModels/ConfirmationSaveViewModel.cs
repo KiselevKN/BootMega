@@ -1,5 +1,4 @@
-﻿using System;
-using BootMega.Theme.ViewModels;
+﻿using BootMega.Theme.ViewModels;
 using Module.HexFile.Properties;
 
 namespace Module.HexFile.ViewModels
@@ -25,7 +24,7 @@ namespace Module.HexFile.ViewModels
 
         public override string Text
         {
-            get { return String.Format(Resources.SaveFile, fileName); }
+            get { return string.Format(Resources.SaveFile, fileName); }
         }
 
         public override string Title

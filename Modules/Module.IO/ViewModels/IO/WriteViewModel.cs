@@ -27,7 +27,7 @@ namespace Module.IO.ViewModels
 
         public override string Title
         {
-            get { return String.Format(Resources.TitleWrite, GetMemoryType()); }
+            get { return string.Format(Resources.TitleWrite, GetMemoryType()); }
         }
 
         public override DrawingImage Icon
@@ -49,7 +49,7 @@ namespace Module.IO.ViewModels
 
         public WriteViewModel(SelectedSettings settings, string portName, ILoggerFacade logger, IMemory memory) : base(settings, portName, logger)
         {
-            Text = String.Format(Resources.TextWrite, GetMemoryType());
+            Text = string.Format(Resources.TextWrite, GetMemoryType());
             taskm = new TaskManager<bool, double>((taskManager) =>
             {
                 return (new WritePageWorkerMaster(portName, settings.SettingsInfo.SerialPortSettings, logger,
@@ -76,12 +76,12 @@ namespace Module.IO.ViewModels
 
         private void taskm_Started(object sender, TaskStartedEventArgs e)
         {
-            logger.Log(String.Format(Resources.WriteStarted, GetMemoryType()), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.WriteStarted, GetMemoryType()), Category.Debug, Priority.None);
         }
 
         private void taskm_Faulted(object sender, TaskFaultedEventArgs e)
         {
-            logger.Log(String.Format(Resources.WriteError, GetMemoryType(), e.Exception), Category.Exception, Priority.None);
+            logger.Log(string.Format(Resources.WriteError, GetMemoryType(), e.Exception), Category.Exception, Priority.None);
             Exception = e.Exception;
             Dlg.Result = false;
             Dlg.Close();
@@ -89,14 +89,14 @@ namespace Module.IO.ViewModels
 
         private void taskm_Completed(object sender, TaskCompletedEventArgs<bool> e)
         {
-            logger.Log(String.Format(Resources.WriteCompleted, GetMemoryType()), Category.Debug, Priority.None);        
+            logger.Log(string.Format(Resources.WriteCompleted, GetMemoryType()), Category.Debug, Priority.None);        
             Dlg.Result = true;
             Dlg.Close();
         }
 
         private void taskm_Canceled(object sender, TaskCanceledEventArgs e)
         {
-            logger.Log(String.Format(Resources.WriteStoped, GetMemoryType()), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.WriteStoped, GetMemoryType()), Category.Debug, Priority.None);
             Dlg.Result = false;
             Dlg.Close();
         }

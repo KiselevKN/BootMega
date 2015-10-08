@@ -169,7 +169,7 @@ namespace Module.Settings.ViewModels.Base
                 ListOfParities.ElementAt(IndexOfTheSelectedParity), ListOfStopBits.ElementAt(IndexOfTheSelectedStopBits), 
                 ListOfAllowableHeaders.ElementAt(IndexOfTheSelectedHeaderTx), ListOfAllowableHeaders.ElementAt(IndexOfTheSelectedHeaderRx));
 
-            var s = new SettingsInfo(0, String.Empty, processor, serialPortSettings);
+            var s = new SettingsInfo(0, string.Empty, processor, serialPortSettings);
 
             return s;
         }

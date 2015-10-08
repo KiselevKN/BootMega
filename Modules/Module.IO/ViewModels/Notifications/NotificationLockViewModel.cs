@@ -1,5 +1,4 @@
-﻿using System;
-using BootMega.Theme.ViewModels;
+﻿using BootMega.Theme.ViewModels;
 using Module.IO.Properties;
 
 namespace Module.IO.ViewModels
@@ -25,7 +24,7 @@ namespace Module.IO.ViewModels
 
         public override string Text
         {
-            get { return String.Format(Resources.NotificationLock, locks); }
+            get { return string.Format(Resources.NotificationLock, locks); }
         }
 
         public override string Title

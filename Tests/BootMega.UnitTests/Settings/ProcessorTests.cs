@@ -47,7 +47,7 @@ namespace BootMega.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreateNameException()
         {
-            Processor p1 = new Processor(0, String.Empty, 0x1000, 0x40000, 0x3E000, 0x3FFFF);
+            Processor p1 = new Processor(0, string.Empty, 0x1000, 0x40000, 0x3E000, 0x3FFFF);
         }
 
         #endregion

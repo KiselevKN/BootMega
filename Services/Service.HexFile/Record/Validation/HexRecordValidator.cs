@@ -1,7 +1,7 @@
-﻿namespace Service.HexFile.Record.Validation
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace Service.HexFile.Record.Validation
+{
     /// <summary>
     /// Main validator
     /// </summary>

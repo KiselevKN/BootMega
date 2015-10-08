@@ -1,10 +1,9 @@
-﻿namespace Service.HexFile.Record.Validation
-{
-    using System;
-    using System.Collections.Generic;
-    using Service.HexFile.Properties;
-    using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using Service.HexFile.Properties;
+using System.Text.RegularExpressions;
 
+namespace Service.HexFile.Record.Validation
+{
     /// <summary>
     /// Pattern validator
     /// </summary>
@@ -12,7 +11,7 @@
     {
         #region fields
 
-        internal Dictionary<HexRecordType, String> patterns;
+        internal Dictionary<HexRecordType, string> patterns;
 
         #endregion
 
@@ -33,12 +32,12 @@
 
         #region IHexRecordValidator Members
 
-        public void Validate(String record)
+        public void Validate(string record)
         {
             HexRecordType type = record.GetRecordType();
             Regex rgx = new Regex(patterns[type]);
             if (!rgx.IsMatch(record))
-                throw new HexRecordValidationException(String.Format(Resources.RecordDoesNotMatchThePattern, record, patterns[type]));
+                throw new HexRecordValidationException(string.Format(Resources.RecordDoesNotMatchThePattern, record, patterns[type]));
         }
 
         #endregion

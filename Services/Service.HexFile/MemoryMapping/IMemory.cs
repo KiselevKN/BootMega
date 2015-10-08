@@ -1,7 +1,7 @@
-﻿namespace Service.HexFile.MemoryMapping
-{
-    using System;
+﻿using System;
 
+namespace Service.HexFile.MemoryMapping
+{
     public interface IMemory : IEquatable<IMemory>
     {
         /// <summary>

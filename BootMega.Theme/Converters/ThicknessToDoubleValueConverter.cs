@@ -10,7 +10,7 @@ namespace BootMega.Theme.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Thickness t = (Thickness)value;
-            String p = parameter as String;
+            string p = parameter as string;
             if (t != null)
             {
                 switch(p.ToLower())

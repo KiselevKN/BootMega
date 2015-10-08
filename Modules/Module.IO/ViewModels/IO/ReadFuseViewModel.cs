@@ -73,7 +73,7 @@ namespace Module.IO.ViewModels
 
         private void taskm_Faulted(object sender, TaskFaultedEventArgs e)
         {
-            logger.Log(String.Format(Resources.ReadFuseError, e.Exception), Category.Exception, Priority.None);
+            logger.Log(string.Format(Resources.ReadFuseError, e.Exception), Category.Exception, Priority.None);
             Exception = e.Exception;
             Dlg.Result = false;
             Dlg.Close();
@@ -81,7 +81,7 @@ namespace Module.IO.ViewModels
 
         private void taskm_Completed(object sender, TaskCompletedEventArgs<byte[]> e)
         {
-            logger.Log(String.Format(Resources.ReadFuseCompleted, e.Result[0], e.Result[1], e.Result[2]), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.ReadFuseCompleted, e.Result[0], e.Result[1], e.Result[2]), Category.Debug, Priority.None);
             Fuses = e.Result;
             Dlg.Result = true;
             Dlg.Close();

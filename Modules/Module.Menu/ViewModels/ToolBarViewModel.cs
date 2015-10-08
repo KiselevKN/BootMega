@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO.Ports;
@@ -23,7 +22,7 @@ namespace Module.Menu.ViewModels
         private IEventAggregator eventAggregator;
         private ILoggerFacade logger;
 
-        private List<String> ports;
+        private List<string> ports;
         private ICommand updateComPortsListCommand;
         private int? selectedPortIndex = null;
         private bool memoryType;
@@ -76,12 +75,12 @@ namespace Module.Menu.ViewModels
                     if (i != (Ports.Count() - 1)) 
                         sb.Append(", ");
                 }
-                logger.Log(String.Format(Resources.FoundTheFollowingPorts, sb.ToString()), Category.Debug, Priority.None);
+                logger.Log(string.Format(Resources.FoundTheFollowingPorts, sb.ToString()), Category.Debug, Priority.None);
                 SelectedPortIndex = 0;
             }
         }
 
-        public static ValidationResult CheckPorts(List<String> ports, ValidationContext context)
+        public static ValidationResult CheckPorts(List<string> ports, ValidationContext context)
         {
             var vm = (ToolBarViewModel)context.ObjectInstance;
             if ((ports == null) || ((ports != null) && (ports.Count == 0)))
@@ -96,7 +95,7 @@ namespace Module.Menu.ViewModels
 
         [Required]
         [CustomValidation(typeof(ToolBarViewModel), "CheckPorts")]
-        public List<String> Ports
+        public List<string> Ports
         {
             get { return ports; }
             set { SetProperty(ref ports, value); }
@@ -118,7 +117,7 @@ namespace Module.Menu.ViewModels
                     if (value != null)
                     {
                         eventAggregator.GetEvent<SelectedComPortEvent>().Publish(Ports[(int)value]);
-                        logger.Log(String.Format(Resources.SelectTheFollowingPort, Ports[(int)value]), Category.Debug, Priority.None);
+                        logger.Log(string.Format(Resources.SelectTheFollowingPort, Ports[(int)value]), Category.Debug, Priority.None);
                     }
                 }
             }

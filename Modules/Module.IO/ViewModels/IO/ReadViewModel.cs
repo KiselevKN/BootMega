@@ -31,7 +31,7 @@ namespace Module.IO.ViewModels
 
         public override string Title
         {
-            get { return String.Format(Resources.TitleRead, GetMemoryType()); }
+            get { return string.Format(Resources.TitleRead, GetMemoryType()); }
         }
 
         public override DrawingImage Icon
@@ -50,7 +50,7 @@ namespace Module.IO.ViewModels
 
         public ReadViewModel(SelectedSettings settings, string portName, ILoggerFacade logger) : base(settings, portName, logger)
         {
-            Text = String.Format(Resources.TextAnalysis, GetMemoryType());
+            Text = string.Format(Resources.TextAnalysis, GetMemoryType());
             taskmIsEmptyPage = new TaskManager<List<int>, double>((taskManager) =>
             {
                 return (new IsEmptyPageWorkerMaster(portName, settings.SettingsInfo.SerialPortSettings, logger,
@@ -77,12 +77,12 @@ namespace Module.IO.ViewModels
 
         private void taskmIsEmptyPage_Started(object sender, TaskStartedEventArgs e)
         {
-            logger.Log(String.Format(Resources.IsEmptyStarted, GetMemoryType()), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.IsEmptyStarted, GetMemoryType()), Category.Debug, Priority.None);
         }
 
         private void taskmIsEmptyPage_Faulted(object sender, TaskFaultedEventArgs e)
         {
-            logger.Log(String.Format(Resources.IsEmptyError, GetMemoryType(), e.Exception), Category.Exception, Priority.None);
+            logger.Log(string.Format(Resources.IsEmptyError, GetMemoryType(), e.Exception), Category.Exception, Priority.None);
             Exception = e.Exception;
             Dlg.Result = false;
             Dlg.Close();
@@ -90,8 +90,8 @@ namespace Module.IO.ViewModels
 
         private void taskmIsEmptyPage_Completed(object sender, TaskCompletedEventArgs<List<int>> e)
         {
-            Text = String.Format(Resources.TextRead, GetMemoryType());
-            logger.Log(String.Format(Resources.IsEmptyCompleted, GetMemoryType()), Category.Debug, Priority.None);
+            Text = string.Format(Resources.TextRead, GetMemoryType());
+            logger.Log(string.Format(Resources.IsEmptyCompleted, GetMemoryType()), Category.Debug, Priority.None);
             taskm = new TaskManager<IMemory, double>((taskManager) =>
             {
                 return (new ReadPageWorkerMaster(portName, settings.SettingsInfo.SerialPortSettings, logger,
@@ -109,7 +109,7 @@ namespace Module.IO.ViewModels
 
         private void taskmIsEmptyPage_Canceled(object sender, TaskCanceledEventArgs e)
         {
-            logger.Log(String.Format(Resources.IsEmptyStoped, GetMemoryType()), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.IsEmptyStoped, GetMemoryType()), Category.Debug, Priority.None);
             Dlg.Result = false;
             Dlg.Close();
         }
@@ -121,12 +121,12 @@ namespace Module.IO.ViewModels
 
         private void taskm_Started(object sender, TaskStartedEventArgs e)
         {
-            logger.Log(String.Format(Resources.ReadStarted, GetMemoryType()), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.ReadStarted, GetMemoryType()), Category.Debug, Priority.None);
         }
 
         private void taskm_Faulted(object sender, TaskFaultedEventArgs e)
         {
-            logger.Log(String.Format(Resources.ReadError, GetMemoryType(), e.Exception), Category.Exception, Priority.None);
+            logger.Log(string.Format(Resources.ReadError, GetMemoryType(), e.Exception), Category.Exception, Priority.None);
             Exception = e.Exception;
             Dlg.Result = false;
             Dlg.Close();
@@ -134,7 +134,7 @@ namespace Module.IO.ViewModels
 
         private void taskm_Completed(object sender, TaskCompletedEventArgs<IMemory> e)
         {
-            logger.Log(String.Format(Resources.ReadCompleted, GetMemoryType()), Category.Debug, Priority.None);        
+            logger.Log(string.Format(Resources.ReadCompleted, GetMemoryType()), Category.Debug, Priority.None);        
             Memory = e.Result;
             Dlg.Result = true;
             Dlg.Close();
@@ -142,7 +142,7 @@ namespace Module.IO.ViewModels
 
         private void taskm_Canceled(object sender, TaskCanceledEventArgs e)
         {
-            logger.Log(String.Format(Resources.ReadStoped, GetMemoryType()), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.ReadStoped, GetMemoryType()), Category.Debug, Priority.None);
             Dlg.Result = false;
             Dlg.Close();
         }

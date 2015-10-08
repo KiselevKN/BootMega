@@ -186,7 +186,7 @@ namespace Service.Settings.Models
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            if (String.IsNullOrEmpty(format))
+            if (string.IsNullOrEmpty(format))
                 format = "G";
 
             if (formatProvider == null)
@@ -197,9 +197,9 @@ namespace Service.Settings.Models
                 case "G":
                     return ToString();
                 case "LOG":
-                    return String.Format(Resources.ProcessorString, Id, Name, FlashSize, EepromSize, BootStartAddress, BootEndAddress);
+                    return string.Format(Resources.ProcessorString, Id, Name, FlashSize, EepromSize, BootStartAddress, BootEndAddress);
                 default:
-                    throw new FormatException(String.Format(Resources.FormatNotSupported, format));
+                    throw new FormatException(string.Format(Resources.FormatNotSupported, format));
             }
         }
 

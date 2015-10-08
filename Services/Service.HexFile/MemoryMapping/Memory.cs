@@ -1,9 +1,9 @@
-﻿namespace Service.HexFile.MemoryMapping
-{
-    using System;
-    using System.Collections.Generic;
-    using Service.HexFile.Properties;
+﻿using System;
+using System.Collections.Generic;
+using Service.HexFile.Properties;
 
+namespace Service.HexFile.MemoryMapping
+{
     public class Memory : IMemory
     {
         #region consts
@@ -127,7 +127,7 @@
             get
             {
                 if (address < 0 || address >= Size)
-                    throw new IndexOutOfRangeException(String.Format(Resources.AddressOutOfRange, address, 0, Size - 1));
+                    throw new IndexOutOfRangeException(string.Format(Resources.AddressOutOfRange, address, 0, Size - 1));
 
                 int segmentNumber = (int)(address >> 16);
                 int remainderOfTheDivision = (int)(address & 0xFFFF);
@@ -136,7 +136,7 @@
             set
             {
                 if (address < 0 || address >= Size)
-                    throw new IndexOutOfRangeException(String.Format(Resources.AddressOutOfRange, address, 0, Size - 1));
+                    throw new IndexOutOfRangeException(string.Format(Resources.AddressOutOfRange, address, 0, Size - 1));
 
                 int segmentNumber = (int)(address >> 16);
                 int remainderOfTheDivision = (int)(address & 0xFFFF);
@@ -198,7 +198,7 @@
         public Page GetPageByAddress(long address)
         {
             if (address < 0 || address > Size - Page.Size)
-                throw new IndexOutOfRangeException(String.Format(Resources.AddressOutOfRange, address, 0, Size - Page.Size));
+                throw new IndexOutOfRangeException(string.Format(Resources.AddressOutOfRange, address, 0, Size - Page.Size));
 
             Page page = new Page();
             for (int i = 0; i < Page.Size; i++)

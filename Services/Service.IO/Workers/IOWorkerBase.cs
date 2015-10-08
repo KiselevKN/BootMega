@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Microsoft.Practices.Prism.Logging;
 using Service.IO.Buffers;
 using Service.IO.Protocols;
@@ -65,7 +64,7 @@ namespace Service.IO.Workers
         {
             var buffer = protocol.Pack();
             syncContext.Post(delegate { 
-                logger.Log(String.Format("Tx: {0}", buffer.ToString()), Category.Debug, Priority.None); 
+                logger.Log(string.Format("Tx: {0}", buffer.ToString()), Category.Debug, Priority.None); 
             }, null);
             sp.Write(protocol.Pack());
         }
@@ -96,7 +95,7 @@ namespace Service.IO.Workers
                                 {
                                     syncContext.Post(delegate
                                     {
-                                        logger.Log(String.Format("Rx: {0}", buffer.ToString()), Category.Debug, Priority.None);
+                                        logger.Log(string.Format("Rx: {0}", buffer.ToString()), Category.Debug, Priority.None);
                                     }, null);
                                     return true;
                                 }

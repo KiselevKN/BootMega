@@ -12,7 +12,7 @@ namespace Module.Settings.Converters
             List<string> sHeaders = new List<string>();
 
             foreach (var b in s)
-                sHeaders.Add(String.Format("0x{0:X2}", b));
+                sHeaders.Add(string.Format("0x{0:X2}", b));
 
             return sHeaders;
         }

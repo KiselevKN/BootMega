@@ -17,7 +17,7 @@ namespace Service.Settings.XmlFile
 
         private XmlFileSchemaValidator() { }
 
-        public XmlFileSchemaValidator(String path)
+        public XmlFileSchemaValidator(string path)
         {
             schemas = new XmlSchemaSet();
             schemas.Add(null, path);

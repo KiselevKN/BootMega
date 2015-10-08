@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BootMega.Theme;
@@ -177,7 +176,7 @@ namespace Module.HexFile.ViewModels
             {
                 Status = Resources.FilesAreNotEquals;
                 FilesAreEqual = false;
-                Differences = String.Format(Resources.Difference, addressesOfDifferences.Count);
+                Differences = string.Format(Resources.Difference, addressesOfDifferences.Count);
             }
 
 

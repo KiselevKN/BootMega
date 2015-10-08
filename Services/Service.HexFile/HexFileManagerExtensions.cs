@@ -23,7 +23,7 @@ namespace Service.HexFile
 
             using (StreamReader sr = new StreamReader(fs))
             {
-                String record;
+                string record;
                 while (!sr.EndOfStream)
                 {
                     record = sr.ReadLine();
@@ -49,7 +49,7 @@ namespace Service.HexFile
                 else if (type == HexRecordType.Data)
                 {
                     address += segmentAddress;
-                    Byte[] data = ((DataHexRecord)record).Data;
+                    byte[] data = ((DataHexRecord)record).Data;
                     int i = 0;
                     foreach (byte b in data)
                     {

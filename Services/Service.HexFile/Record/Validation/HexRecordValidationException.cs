@@ -1,7 +1,7 @@
-﻿namespace Service.HexFile.Record.Validation
-{
-    using System;
+﻿using System;
 
+namespace Service.HexFile.Record.Validation
+{
     [Serializable]
     public class HexRecordValidationException : ApplicationException
     {

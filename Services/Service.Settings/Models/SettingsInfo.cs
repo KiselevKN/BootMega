@@ -78,7 +78,7 @@ namespace Service.Settings.Models
     
         #region ctors
 
-        public SettingsInfo(int id, String name, Processor processor,
+        public SettingsInfo(int id, string name, Processor processor,
             SerialPortSettings serialPortSettings)
         {
             Id = id;
@@ -106,7 +106,7 @@ namespace Service.Settings.Models
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            if (String.IsNullOrEmpty(format))
+            if (string.IsNullOrEmpty(format))
                 format = "G";
             if (formatProvider == null)
                 formatProvider = CultureInfo.CurrentCulture;
@@ -116,10 +116,10 @@ namespace Service.Settings.Models
                 case "G":
                     return ToString();
                 case "LOG":
-                    return String.Format(Resources.SettingsInfoString,
+                    return string.Format(Resources.SettingsInfoString,
                         Id, Name, Processor.ToString("LOG", null), SerialPortSettings.ToString("LOG", null));
                 default:
-                    throw new FormatException(String.Format(Resources.FormatNotSupported, format));
+                    throw new FormatException(string.Format(Resources.FormatNotSupported, format));
             }
         }
 

@@ -1,8 +1,7 @@
-﻿namespace Service.HexFile.Record.Validation
-{
-    using System;
-    using Service.HexFile.Properties;
+﻿using Service.HexFile.Properties;
 
+namespace Service.HexFile.Record.Validation
+{
     /// <summary>
     /// Record length validator
     /// </summary>
@@ -16,10 +15,10 @@
 
         #region IHexRecordValidator Members
 
-        public void Validate(String record)
+        public void Validate(string record)
         {
             if (record.GetNumberOfDataBytes() != record.GetNumberOfDataBytesInFact())
-                throw new HexRecordValidationException(String.Format(Resources.InvalidRecordLength, record));
+                throw new HexRecordValidationException(string.Format(Resources.InvalidRecordLength, record));
         }
 
         #endregion

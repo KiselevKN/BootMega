@@ -27,7 +27,7 @@ namespace Module.IO.ViewModels
 
         public override string Text
         {
-            get { return String.Format(Resources.NotificationConnection, version, date.ToShortDateString()); }
+            get { return string.Format(Resources.NotificationConnection, version, date.ToShortDateString()); }
         }
 
         public override string Title

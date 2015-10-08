@@ -144,7 +144,7 @@ namespace BootMega.UnitTests
                 Assert.IsTrue(expectedException is ArgumentNullException);
             };
 
-            func(String.Empty);
+            func(string.Empty);
             func(null);
         }
 

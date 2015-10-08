@@ -23,7 +23,7 @@ namespace Module.Settings.ViewModels
 
         public AddNewSettingsViewModel(ISettingsRepository settingsRepository) : base(settingsRepository)
         {
-            Name = String.Empty;
+            Name = string.Empty;
         }
 
         #endregion
@@ -62,7 +62,7 @@ namespace Module.Settings.ViewModels
         #region public String Name
 
         [CustomValidation(typeof(AddNewSettingsViewModel), "CheckName")]
-        public String Name
+        public string Name
         {
             get { return name; }
             set 
@@ -83,7 +83,7 @@ namespace Module.Settings.ViewModels
             var s = (AddNewSettingsViewModel)context.ObjectInstance;
             var settings = s.settingsRepository.Settings.ToList();
 
-            if (name == null || name == String.Empty || name.Trim() == String.Empty)
+            if (name == null || name == string.Empty || name.Trim() == string.Empty)
                 return new ValidationResult(Resources.NameСanNotBeEmpty);
             else if (settings.Exists(n => n.Name == name))
                 return new ValidationResult(Resources.SettingsWithTheSameNameAlreadyExists);

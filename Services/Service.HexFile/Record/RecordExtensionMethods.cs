@@ -64,8 +64,8 @@ namespace Service.HexFile.Record
         {
             if (record.GetRecordType() == HexRecordType.Data)
             {
-                Byte[] dataBytes = new Byte[record.GetNumberOfDataBytes()];
-                for (Int32 i = 0; i < record.GetNumberOfDataBytes(); i++)
+                byte[] dataBytes = new byte[record.GetNumberOfDataBytes()];
+                for (int i = 0; i < record.GetNumberOfDataBytes(); i++)
                     dataBytes[i] = Convert.ToByte(record.Substring(9 + 2 * i, 2), 16);
                 return dataBytes;
             }
@@ -89,8 +89,8 @@ namespace Service.HexFile.Record
         /// <returns>CheckSum</returns>
         internal static int GetCheckSumInFact(this string record)
         {
-            Int32 checkSum = 0;
-            for (Int32 i = 0; i < (record.Length - 1) / 2 - 1; i++)
+            int checkSum = 0;
+            for (int i = 0; i < (record.Length - 1) / 2 - 1; i++)
                 checkSum += Convert.ToInt32(record.Substring(1 + 2 * i, 2), 16);
             checkSum &= 0xFF;
             checkSum = 0x100 - checkSum;

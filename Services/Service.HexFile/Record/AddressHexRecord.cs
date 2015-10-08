@@ -1,7 +1,7 @@
-﻿namespace Service.HexFile.Record
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace Service.HexFile.Record
+{
     /// <summary>
     /// Hex record with address 
     /// </summary>

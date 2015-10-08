@@ -1,7 +1,7 @@
-﻿namespace Service.HexFile.MemoryMapping
-{
-    using System;
+﻿using System;
 
+namespace Service.HexFile.MemoryMapping
+{
     /// <summary>
     /// Memory page
     /// </summary>
@@ -47,14 +47,14 @@
         {
             get
             {
-                if (index < 0 || index >= Page.Size)
+                if (index < 0 || index >= Size)
                     throw new IndexOutOfRangeException("index");
 
                 return cells[index];
             }
             set
             {
-                if (index < 0 || index >= Page.Size)
+                if (index < 0 || index >= Size)
                     throw new IndexOutOfRangeException("index");
 
                 cells[index] = value;

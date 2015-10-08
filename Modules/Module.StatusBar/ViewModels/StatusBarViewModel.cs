@@ -15,9 +15,9 @@ namespace Module.StatusBar.ViewModels
         private IEventAggregator eventAggregator;
         private ILoggerFacade logger;
 
-        private String settingsName;
+        private string settingsName;
         private MemoryType memoryType;
-        private String processor;
+        private string processor;
 
         private bool hasError = true;
 
@@ -54,7 +54,7 @@ namespace Module.StatusBar.ViewModels
 
         #region properties
 
-        public String SettingsName
+        public string SettingsName
         {
             get { return settingsName; }
             set { SetProperty(ref settingsName, value); }
@@ -66,7 +66,7 @@ namespace Module.StatusBar.ViewModels
             set { SetProperty(ref memoryType, value); }
         }
 
-        public String Processor
+        public string Processor
         {
             get { return processor; }
             set { SetProperty(ref processor, value); }

@@ -1,7 +1,7 @@
-﻿namespace Service.HexFile.Record.Validation
-{
-    using System;
+﻿using System;
 
+namespace Service.HexFile.Record.Validation
+{
     /// <summary>
     /// Null or empty record validator
     /// </summary>
@@ -15,9 +15,9 @@
 
         #region IHexRecordValidator Members
 
-        public void Validate(String record)
+        public void Validate(string record)
         {
-            if (String.IsNullOrEmpty(record))
+            if (string.IsNullOrEmpty(record))
                 throw new ArgumentNullException("record");
         }
 

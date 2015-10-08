@@ -73,7 +73,7 @@ namespace Module.IO.ViewModels
 
         private void taskm_Faulted(object sender, TaskFaultedEventArgs e)
         {
-            logger.Log(String.Format(Resources.ReadLockError, e.Exception), Category.Exception, Priority.None);
+            logger.Log(string.Format(Resources.ReadLockError, e.Exception), Category.Exception, Priority.None);
             Exception = e.Exception;
             Dlg.Result = false;
             Dlg.Close();
@@ -81,7 +81,7 @@ namespace Module.IO.ViewModels
 
         private void taskm_Completed(object sender, TaskCompletedEventArgs<byte> e)
         {
-            logger.Log(String.Format(Resources.ReadLockCompleted, e.Result), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.ReadLockCompleted, e.Result), Category.Debug, Priority.None);
             Locks = e.Result;
             Dlg.Result = true;
             Dlg.Close();

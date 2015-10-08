@@ -1,10 +1,10 @@
-﻿namespace Service.HexFile.MemoryMapping
-{
-    using System;
-    using System.Globalization;
-    using System.Text;
-    using Service.HexFile.Properties;
+﻿using System;
+using System.Globalization;
+using System.Text;
+using Service.HexFile.Properties;
 
+namespace Service.HexFile.MemoryMapping
+{
     /// <summary>
     /// Page line
     /// </summary>
@@ -40,14 +40,14 @@
         {
             get 
             {
-                if (index < 0 || index >= PageLine.Size)
+                if (index < 0 || index >= Size)
                     throw new IndexOutOfRangeException("index");
 
                 return cells[index]; 
             }
             set 
             {
-                if (index < 0 || index >= PageLine.Size)
+                if (index < 0 || index >= Size)
                     throw new IndexOutOfRangeException("index");
 
                 cells[index] = value; 
@@ -69,7 +69,7 @@
 
         public string ToString(string format, IFormatProvider formatProvider = null)
         {
-            if (String.IsNullOrEmpty(format))
+            if (string.IsNullOrEmpty(format))
                 format = "G";
 
             if (formatProvider == null)
@@ -90,7 +90,7 @@
                         sb.AppendFormat("{0} ", (char)cells[i]);
                     return sb.ToString().Trim();
                 default:
-                    throw new FormatException(String.Format(Resources.FormatNotSupported, format));
+                    throw new FormatException(string.Format(Resources.FormatNotSupported, format));
             }
         }
 

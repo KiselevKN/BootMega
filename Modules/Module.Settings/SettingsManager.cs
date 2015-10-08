@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using BootMega.Interaction.Events;
 using Microsoft.Practices.Prism.Logging;
@@ -39,7 +38,7 @@ namespace Module.Settings
         public void LastSessionSettings()
         {
             eventAggregator.GetEvent<SelectedSettingsEvent>().Publish(settingsRepository.SelectedSettings);
-            logger.Log(String.Format(Resources.LogSelectedSettings, settingsRepository.SelectedSettings.ToString("LOG", null)), Category.Debug, Priority.None);
+            logger.Log(string.Format(Resources.LogSelectedSettings, settingsRepository.SelectedSettings.ToString("LOG", null)), Category.Debug, Priority.None);
         }
 
         public void UpdateSettings()
@@ -52,7 +51,7 @@ namespace Module.Settings
 
                 settingsRepository.UpdateSettings(sNew);
 
-                logger.Log(String.Format(Resources.LogUpdatedSettings, sOld.ToString("LOG", null), sNew.ToString("LOG", null)), Category.Debug, Priority.None);
+                logger.Log(string.Format(Resources.LogUpdatedSettings, sOld.ToString("LOG", null), sNew.ToString("LOG", null)), Category.Debug, Priority.None);
             }
         }
 
@@ -63,7 +62,7 @@ namespace Module.Settings
             {
                 var s = vm.ListOfSettings.ElementAt(vm.IndexOfSelectedSettings);
                 settingsRepository.RemoveSettings(s);
-                logger.Log(String.Format(Resources.LogRemovedSettings, s.ToString("LOG", null)), Category.Debug, Priority.None);
+                logger.Log(string.Format(Resources.LogRemovedSettings, s.ToString("LOG", null)), Category.Debug, Priority.None);
             }
         }
 
@@ -74,7 +73,7 @@ namespace Module.Settings
             {
                 var s = vm.GetNewSettingsInfo();
                 settingsRepository.AddNewSettings(s);
-                logger.Log(String.Format(Resources.LogAddedNewSettings, s.ToString("LOG", null)), Category.Debug, Priority.None);
+                logger.Log(string.Format(Resources.LogAddedNewSettings, s.ToString("LOG", null)), Category.Debug, Priority.None);
             }
         }
 
@@ -85,7 +84,7 @@ namespace Module.Settings
             {
                 settingsRepository.SelectedSettings = new SelectedSettings(vm.MemoryType, vm.ListOfSettings.ToList()[vm.IndexOfSelectedSettings]);
                 eventAggregator.GetEvent<SelectedSettingsEvent>().Publish(settingsRepository.SelectedSettings);
-                logger.Log(String.Format(Resources.LogSelectedSettings, settingsRepository.SelectedSettings.ToString("LOG", null)), Category.Debug, Priority.None);
+                logger.Log(string.Format(Resources.LogSelectedSettings, settingsRepository.SelectedSettings.ToString("LOG", null)), Category.Debug, Priority.None);
             }
         }
 

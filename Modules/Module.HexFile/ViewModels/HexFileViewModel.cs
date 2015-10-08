@@ -33,7 +33,7 @@ namespace Module.HexFile.ViewModels
             isDirty = true;
             SaveCommand = new DelegateCommand<object>(OnSave, CanSave);
             CloseCommand = new DelegateCommand<object>(OnClose, CanClose);
-            Debug.WriteLine(String.Format("Open File: {0}", path));
+            Debug.WriteLine(string.Format("Open File: {0}", path));
         }
 
         public HexFileViewModel(IMemory memory, string path, HexFileManagerViewModel hexFileManagerViewModel)
@@ -46,12 +46,12 @@ namespace Module.HexFile.ViewModels
             isDirty = false;
             SaveCommand = new DelegateCommand<object>(OnSave, CanSave);
             CloseCommand = new DelegateCommand<object>(OnClose, CanClose);
-            Debug.WriteLine(String.Format("Open File: {0}", path));
+            Debug.WriteLine(string.Format("Open File: {0}", path));
         }
 
         ~HexFileViewModel()
         {
-            Debug.WriteLine(String.Format("Delete File: {0}", path));
+            Debug.WriteLine(string.Format("Delete File: {0}", path));
         }
 
         #endregion

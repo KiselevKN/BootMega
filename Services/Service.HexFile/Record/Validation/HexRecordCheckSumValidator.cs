@@ -1,8 +1,7 @@
-﻿namespace Service.HexFile.Record.Validation
-{
-    using System;
-    using Service.HexFile.Properties;
+﻿using Service.HexFile.Properties;
 
+namespace Service.HexFile.Record.Validation
+{
     /// <summary>
     /// CheckSum validator
     /// </summary>
@@ -16,10 +15,10 @@
 
         #region IHexRecordValidator Members
 
-        public void Validate(String record)
+        public void Validate(string record)
         {
             if (record.GetCheckSum() != record.GetCheckSumInFact())
-                throw new HexRecordValidationException(String.Format(Resources.InvalidRecordChecksum, record));
+                throw new HexRecordValidationException(string.Format(Resources.InvalidRecordChecksum, record));
         }
 
         #endregion

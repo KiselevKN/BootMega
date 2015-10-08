@@ -1,5 +1,4 @@
-﻿using System;
-using BootMega.Theme.ViewModels;
+﻿using BootMega.Theme.ViewModels;
 using Module.IO.Properties;
 
 namespace Module.IO.ViewModels
@@ -25,7 +24,7 @@ namespace Module.IO.ViewModels
 
         public override string Text
         {
-            get { return String.Format(Resources.NotificationFuse, fuses[0], fuses[1], fuses[2]); }
+            get { return string.Format(Resources.NotificationFuse, fuses[0], fuses[1], fuses[2]); }
         }
 
         public override string Title

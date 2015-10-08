@@ -13,7 +13,7 @@ namespace Module.Settings.Converters
             List<int> iBaudRates = new List<int>();
 
             foreach (var b in s)
-                iBaudRates.Add((Int32)Enum.Parse(typeof(BaudRate), b.ToString()));
+                iBaudRates.Add((int)Enum.Parse(typeof(BaudRate), b.ToString()));
 
             return iBaudRates;
         }

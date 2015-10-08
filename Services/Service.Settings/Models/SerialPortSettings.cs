@@ -99,7 +99,7 @@ namespace Service.Settings.Models
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            if (String.IsNullOrEmpty(format))
+            if (string.IsNullOrEmpty(format))
                 format = "G";
 
             if (formatProvider == null)
@@ -110,10 +110,10 @@ namespace Service.Settings.Models
                 case "G":
                     return ToString();
                 case "LOG":
-                    return String.Format(Resources.SerialPortSettingsString,
+                    return string.Format(Resources.SerialPortSettingsString,
                         BaudRate.ToString(true), Parity.ToString(), StopBits.ToString(), headerTX, HeaderRX);
                 default:
-                    throw new FormatException(String.Format(Resources.FormatNotSupported, format));
+                    throw new FormatException(string.Format(Resources.FormatNotSupported, format));
             }
         }
 

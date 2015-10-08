@@ -51,7 +51,7 @@ namespace Service.Settings.Models
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            if (String.IsNullOrEmpty(format))
+            if (string.IsNullOrEmpty(format))
                 format = "G";
 
             if (formatProvider == null)
@@ -62,10 +62,10 @@ namespace Service.Settings.Models
                 case "G":
                     return ToString();
                 case "LOG":
-                    return String.Format(Resources.SelectedSettingsString,
+                    return string.Format(Resources.SelectedSettingsString,
                         SettingsInfo.ToString("LOG", null), MemoryType.ToString(false));
                 default:
-                    throw new FormatException(String.Format(Resources.FormatNotSupported, format));
+                    throw new FormatException(string.Format(Resources.FormatNotSupported, format));
             }
         }
 
